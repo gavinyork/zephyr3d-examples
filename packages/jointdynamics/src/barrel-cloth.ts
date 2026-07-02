@@ -5,12 +5,21 @@
 // hem than at the waist, so the physics naturally maintains the flared shape
 // and amplifies it under gravity/inertia.
 
-import { InterpolatorScalar, Quaternion } from '@zephyr3d/base';
-import type { BoneNode, ColliderR, GrabberR, Scene } from '@zephyr3d/scene';
-import { BoxShape, createTransformAccess, JointDynamicsSystem } from '@zephyr3d/scene';
-import { CapsuleShape, LambertMaterial, Mesh, SphereShape } from '@zephyr3d/scene';
-import { SceneNode } from '@zephyr3d/scene';
-import { Vector3 } from '@zephyr3d/base';
+import { InterpolatorScalar, Quaternion } from "@zephyr3d/base";
+import type { BoneNode, ColliderR, GrabberR, Scene } from "@zephyr3d/scene";
+import {
+  BoxShape,
+  createTransformAccess,
+  JointDynamicsSystem,
+} from "@zephyr3d/scene";
+import {
+  CapsuleShape,
+  LambertMaterial,
+  Mesh,
+  SphereShape,
+} from "@zephyr3d/scene";
+import { SceneNode } from "@zephyr3d/scene";
+import { Vector3 } from "@zephyr3d/base";
 
 export interface BarrelClothDemo {
   group: SceneNode;
@@ -59,7 +68,11 @@ export function createBarrelClothDemo(scene: Scene): BarrelClothDemo {
         bone.parent = group;
       } else {
         // Outward offset bakes the cone into the constraint rest-lengths
-        bone.position.setXYZ(cx * FLARE_PER_ROW, -ROW_SPACING, cz * FLARE_PER_ROW);
+        bone.position.setXYZ(
+          cx * FLARE_PER_ROW,
+          -ROW_SPACING,
+          cz * FLARE_PER_ROW,
+        );
         bone.parent = chain[row - 1];
       }
       const mesh = new Mesh(scene, boneGeo, boneMat);
@@ -79,15 +92,19 @@ export function createBarrelClothDemo(scene: Scene): BarrelClothDemo {
   const mesh = new Mesh(
     scene,
     new CapsuleShape({ radius: BODY_RADIUS, height: BODY_HEIGHT }),
-    new LambertMaterial()
+    new LambertMaterial(),
   );
   mesh.parent = colliderObj;
 
   // Grabber
   const grabberObj = new SceneNode(scene);
   grabberObj.position.setXYZ(0, WAIST_Y - 0.6, 0.6);
-  const grabberVis = new Mesh(scene, new SphereShape({ radius: 0.3 }), new LambertMaterial());
-  grabberVis.showState = 'hidden';
+  const grabberVis = new Mesh(
+    scene,
+    new SphereShape({ radius: 0.3 }),
+    new LambertMaterial(),
+  );
+  grabberVis.showState = "hidden";
   grabberVis.parent = grabberObj;
 
   const grabbersR: GrabberR[] = [{ radius: 0.3, force: 0.5 }];
@@ -102,7 +119,7 @@ export function createBarrelClothDemo(scene: Scene): BarrelClothDemo {
       children: [],
       isFixed: row === 0,
       depth: row,
-      useForSurfaceCollision: false
+      useForSurfaceCollision: false,
     };
   });
 
@@ -122,8 +139,8 @@ export function createBarrelClothDemo(scene: Scene): BarrelClothDemo {
       height: BODY_HEIGHT,
       friction: 0.1,
       isInverseCollider: false,
-      forceType: 0
-    }
+      forceType: 0,
+    },
   ];
 
   const colliderTA = createTransformAccess(colliderObj);
@@ -133,7 +150,10 @@ export function createBarrelClothDemo(scene: Scene): BarrelClothDemo {
     {
       chainConfig: {
         systemRoot: group,
-        chains: boneGrid.map((chain) => ({ start: chain[0], end: chain[chain.length - 1] }))
+        chains: boneGrid.map((chain) => ({
+          start: chain[0],
+          end: chain[chain.length - 1],
+        })),
       },
       controllerConfig: {
         enableBroadPhase: true,
@@ -152,7 +172,7 @@ export function createBarrelClothDemo(scene: Scene): BarrelClothDemo {
           bendingShrinkVertical: InterpolatorScalar.constant(0.002),
           bendingStretchVertical: InterpolatorScalar.constant(0.002),
           bendingShrinkHorizontal: InterpolatorScalar.constant(0.002),
-          bendingStretchHorizontal: InterpolatorScalar.constant(0.002)
+          bendingStretchHorizontal: InterpolatorScalar.constant(0.002),
         },
         constraintOptions: {
           structuralVertical: true,
@@ -162,13 +182,13 @@ export function createBarrelClothDemo(scene: Scene): BarrelClothDemo {
           isLoop: true,
           collideStructuralVertical: true,
           collideStructuralHorizontal: true,
-          collideShear: true
-        }
-      }
+          collideShear: true,
+        },
+      },
     },
     [{ r: collidersR[0], transform: colliderTA }],
     [{ r: grabbersR[0], transform: grabberTA, enabled: false }],
-    [{ up: new Vector3(0, 1, 0), position: new Vector3(0, 0, 0) }]
+    [{ up: new Vector3(0, 1, 0), position: new Vector3(0, 0, 0) }],
   );
 
   //const constraints = buildConstraints(rootPoints, config.constraintOptions);
@@ -199,6 +219,6 @@ export function createBarrelClothDemo(scene: Scene): BarrelClothDemo {
     fixedIndices,
     cols: COLS,
     rows: ROWS,
-    update
+    update,
   };
 }
