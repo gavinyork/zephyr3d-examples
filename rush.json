@@ -437,6 +437,10 @@
     {
       "packageName": "zephyr3d-example-jointdynamics",
       "projectFolder": "packages/jointdynamics"
+    },
+    {
+      "packageName": "zephyr3d-example-rendergraph-basic",
+      "projectFolder": "packages/rendergraph-basic"
     }
   ]
 }
