@@ -95,6 +95,9 @@ myApp.ready().then(async () => {
     const t = elapsedMs * 0.002;
     const backBufferWidth = device.getDrawingBufferWidth();
     const backBufferHeight = device.getDrawingBufferHeight();
+    const renderScale = 0.5;
+    const renderTargetWidth = Math.max(1, Math.floor(backBufferWidth * renderScale));
+    const renderTargetHeight = Math.max(1, Math.floor(backBufferHeight * renderScale));
     const rotateMatrix = Quaternion.fromEulerAngle(t, t, 0).toMatrix4x4();
     const worldMatrix = Matrix4x4.translateLeft(rotateMatrix, new Vector3(0, 0, -4));
 
@@ -102,39 +105,41 @@ myApp.ready().then(async () => {
     // resources; the executor allocates the actual GPU objects when the graph runs.
     const graph = new RenderGraph();
 
-    // Pass 1: render the cube into a transient 512x512 color texture with depth.
+    // Pass 1: render the cube into transient half-resolution color/depth textures.
+    // The texture descriptors use backbuffer-relative sizing, so the executor resolves
+    // the actual dimensions from setBackbufferSize() every frame.
     // Returning colorTexture lets later passes refer to this pass output by handle.
     const renderTargetColorTexture = graph.addPass('RenderToTexture', (builder) => {
       const colorTexture = builder.createTexture({
         label: 'RenderTargetColor',
         format: 'rgba8unorm',
-        sizeMode: 'absolute',
-        width: 512,
-        height: 512
+        sizeMode: 'backbuffer-relative',
+        width: renderScale,
+        height: renderScale
       });
       const depthTexture = builder.createTexture({
         label: 'RenderTargetDepth',
         format: 'd16',
-        sizeMode: 'absolute',
-        width: 512,
-        height: 512
+        sizeMode: 'backbuffer-relative',
+        width: renderScale,
+        height: renderScale
       });
 
       // A framebuffer is also a graph resource. Its attachments declare dependencies
       // on the color and depth textures created above.
       const framebuffer = builder.createFramebuffer({
         label: 'RenderTargetFramebuffer',
-        width: 512,
-        height: 512,
+        width: renderTargetWidth,
+        height: renderTargetHeight,
         colorAttachments: colorTexture,
         depthAttachment: depthTexture
       });
       builder.setExecute((rgCtx) => {
-        const projMatrix = Matrix4x4.perspective(1.5, 1, 1, 50);
+        const projMatrix = Matrix4x4.perspective(1.5, renderTargetWidth / renderTargetHeight, 1, 50);
 
         // Resolve the logical framebuffer handle to the real framebuffer for this pass.
         device.setFramebuffer(rgCtx.getFramebuffer<FrameBuffer>(framebuffer));
-        device.clearFrameBuffer(new Vector4(0.5, 0, 0, 1), 1, 0);
+        device.clearFrameBuffer(new Vector4(0, 0.32, 0.16, 1), 1, 0);
         bindGroup.setValue('worldMatrix', worldMatrix);
         bindGroup.setValue('projMatrix', projMatrix);
         device.setBindGroup(0, bindGroup);
@@ -164,8 +169,16 @@ myApp.ready().then(async () => {
         device.setProgram(programTextured);
         primitive.draw();
 
-        DrawText.drawText(device, `Device: ${device.type}`, '#ffffff', 30, 30);
-        DrawText.drawText(device, `FPS: ${device.frameInfo.FPS.toFixed(2)}`, '#ffff00', 30, 50);
+        DrawText.drawText(device, 'RenderGraph: backbuffer-relative', '#ffffff', 30, 30);
+        DrawText.drawText(device, `Device: ${device.type}`, '#ffffff', 30, 50);
+        DrawText.drawText(
+          device,
+          `Render target: ${renderTargetWidth} x ${renderTargetHeight} (${renderScale}x)`,
+          '#ffffff',
+          30,
+          70
+        );
+        DrawText.drawText(device, `FPS: ${device.frameInfo.FPS.toFixed(2)}`, '#ffff00', 30, 90);
       });
     });
 

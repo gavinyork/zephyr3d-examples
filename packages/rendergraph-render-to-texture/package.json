@@ -1,7 +1,7 @@
 {
-  "name": "zephyr3d-example-rendergraph-basic",
+  "name": "zephyr3d-example-rendergraph-render-to-texture",
   "version": "0.0.1",
-  "description": "zephyr3d basic rendergraph example",
+  "description": "zephyr3d render graph render-to-texture example",
   "homepage": "https://github.com/gavinyork/zephyr3d-examples",
   "private": "true",
   "files": [

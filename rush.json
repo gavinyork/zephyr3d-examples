@@ -439,8 +439,40 @@
       "projectFolder": "packages/jointdynamics"
     },
     {
-      "packageName": "zephyr3d-example-rendergraph-basic",
-      "projectFolder": "packages/rendergraph-basic"
+      "packageName": "zephyr3d-example-rendergraph-pass-only",
+      "projectFolder": "packages/rendergraph-pass-only"
+    },
+    {
+      "packageName": "zephyr3d-example-rendergraph-render-to-texture",
+      "projectFolder": "packages/rendergraph-render-to-texture"
+    },
+    {
+      "packageName": "zephyr3d-example-rendergraph-backbuffer-relative",
+      "projectFolder": "packages/rendergraph-backbuffer-relative"
+    },
+    {
+      "packageName": "zephyr3d-example-rendergraph-culling",
+      "projectFolder": "packages/rendergraph-culling"
+    },
+    {
+      "packageName": "zephyr3d-example-rendergraph-token-ordering",
+      "projectFolder": "packages/rendergraph-token-ordering"
+    },
+    {
+      "packageName": "zephyr3d-example-rendergraph-subpasses",
+      "projectFolder": "packages/rendergraph-subpasses"
+    },
+    {
+      "packageName": "zephyr3d-example-rendergraph-write-backbuffer",
+      "projectFolder": "packages/rendergraph-write-backbuffer"
+    },
+    {
+      "packageName": "zephyr3d-example-rendergraph-history-resource",
+      "projectFolder": "packages/rendergraph-history-resource"
+    },
+    {
+      "packageName": "zephyr3d-example-rendergraph-profiling",
+      "projectFolder": "packages/rendergraph-profiling"
     }
   ]
 }
