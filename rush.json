@@ -439,6 +439,10 @@
       "projectFolder": "packages/jointdynamics"
     },
     {
+      "packageName": "zephyr3d-example-animation-controller",
+      "projectFolder": "packages/animation-controller"
+    },
+    {
       "packageName": "zephyr3d-example-rendergraph-pass-only",
       "projectFolder": "packages/rendergraph-pass-only"
     },
