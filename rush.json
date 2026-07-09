@@ -443,6 +443,14 @@
       "projectFolder": "packages/animation-controller"
     },
     {
+      "packageName": "zephyr3d-example-shadow-rendering",
+      "projectFolder": "packages/shadow-rendering"
+    },
+    {
+      "packageName": "zephyr3d-example-text-rendering",
+      "projectFolder": "packages/text-rendering"
+    },
+    {
       "packageName": "zephyr3d-example-rendergraph-pass-only",
       "projectFolder": "packages/rendergraph-pass-only"
     },
