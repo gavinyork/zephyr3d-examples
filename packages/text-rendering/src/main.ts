@@ -45,12 +45,12 @@ myApp.ready().then(async () => {
 
   myApp.on('tick', () => {
     const time = myApp.device.frameInfo.elapsedOverall * 0.001;
-    textureLabel.rotation.fromEulerAngle(0, 0, Math.sin(time) * 0.08);
+    textureLabel.rotation.fromEulerAngle(0, 0, Math.sin(time) * 0.12);
     if (msdfText) {
-      msdfText.rotation.fromEulerAngle(0, Math.sin(time * 0.7) * 0.4, 0);
+      msdfText.rotation.fromEulerAngle(0, Math.sin(time * 1.7) * 0.8, 0);
     }
     if (msdfSprite) {
-      msdfSprite.position.setXYZ(2.15, -1.45 + Math.sin(time * 1.4) * 0.12, 0);
+      msdfSprite.position.setXYZ(3.15, -0.45 + Math.sin(time * 2.1) * 0.22, 0);
     }
   });
 
@@ -92,7 +92,7 @@ function createTextSprite(scene, fontFamily) {
   label.textColor = new Vector3(1, 0, 0);
   label.resolutionX = 512;
   label.resolutionY = 192;
-  label.position.setXYZ(0, 1.55, 0);
+  label.position.setXYZ(0, 2.55, 0);
   label.scale.setXYZ(4.6, 1.7, 1);
   return label;
 }
@@ -102,13 +102,13 @@ function createMSDFText(scene, fontAsset) {
   text.fontAsset = fontAsset;
   text.text = 'MSDFText\n3D transform';
   text.fontSize = 0.46;
-  text.maxWidth = 4.5;
+  text.maxWidth = 12;
   text.textAlign = 'center';
   text.anchor = new Vector2(0.5, 0.5);
   text.textColor = new Vector3(0.45, 0.9, 1);
   text.outlineColor = new Vector3(0.01, 0.04, 0.08);
   text.outlineWidth = 0.025;
-  text.position.setXYZ(-2.15, -0.55, 0);
+  text.position.setXYZ(-3.15, 0.55, 0);
   return text;
 }
 
@@ -117,12 +117,12 @@ function createMSDFTextSprite(scene, fontAsset) {
   text.fontAsset = fontAsset;
   text.text = 'MSDFTextSprite\nbillboard label';
   text.fontSize = 0.34;
-  text.maxWidth = 3.7;
+  text.maxWidth = 15;
   text.textAlign = 'center';
   text.anchor = new Vector2(0.5, 0.5);
   text.textColor = new Vector3(1, 0.82, 0.35);
   text.outlineColor = new Vector3(0, 0, 0);
   text.outlineWidth = 0.02;
-  text.position.setXYZ(2.15, -1.45, 0);
+  text.position.setXYZ(3.15, -0.45, 0);
   return text;
 }
