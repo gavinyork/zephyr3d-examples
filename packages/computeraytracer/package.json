@@ -1,7 +1,7 @@
 {
-  "name": "zephyr3d-example-rendergraph-history-resource",
+  "name": "zephyr3d-example-computeraytracer",
   "version": "0.0.1",
-  "description": "zephyr3d render graph history resource example",
+  "description": "zephyr3d compute shader example - progressive ray tracer",
   "homepage": "https://github.com/gavinyork/zephyr3d-examples",
   "private": "true",
   "files": [
@@ -61,6 +61,7 @@
     "@zephyr3d/base": "^0.2.8",
     "@zephyr3d/device": "^0.2.14",
     "@zephyr3d/scene": "^0.9.15",
+    "@zephyr3d/loaders": "^0.1.4",
     "@zephyr3d/backend-webgl": "^0.1.14",
     "@zephyr3d/backend-webgpu": "^0.1.16",
     "@rollup/plugin-commonjs": "~28.0.2"

@@ -459,6 +459,10 @@
       "projectFolder": "packages/computeparticles"
     },
     {
+      "packageName": "zephyr3d-example-computeraytracer",
+      "projectFolder": "packages/computeraytracer"
+    },
+    {
       "packageName": "zephyr3d-example-rendergraph-pass-only",
       "projectFolder": "packages/rendergraph-pass-only"
     },

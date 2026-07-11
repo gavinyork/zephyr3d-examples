@@ -59,7 +59,7 @@
   "dependencies": {
     "@webgpu/types": "^0.1.65",
     "@zephyr3d/base": "^0.2.8",
-    "@zephyr3d/device": "^0.2.12",
+    "@zephyr3d/device": "^0.2.14",
     "@zephyr3d/scene": "^0.9.15",
     "@zephyr3d/loaders": "^0.1.4",
     "@zephyr3d/backend-webgl": "^0.1.14",
