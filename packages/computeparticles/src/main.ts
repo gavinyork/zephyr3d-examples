@@ -38,8 +38,18 @@ type PointerState = {
       this.particlesIn = structParticle[0]().storageBuffer(0);
       this.particlesOut = structParticle[0]().storageBuffer(0);
 
-      pb.func('hash11', [pb.float('n')], function () {
-        this.$return(pb.fract(pb.mul(pb.sin(pb.mul(this.n, 127.1)), 43758.5453123)));
+      pb.func('hashU32', [pb.uint('x')], function () {
+        this.h = pb.add(this.x, 0x9e3779b9);
+        this.h = pb.compXor(this.h, pb.sar(this.h, 16));
+        this.h = pb.mul(this.h, 0x7feb352d);
+        this.h = pb.compXor(this.h, pb.sar(this.h, 15));
+        this.h = pb.mul(this.h, 0x846ca68b);
+        this.h = pb.compXor(this.h, pb.sar(this.h, 16));
+        this.$return(this.h);
+      });
+
+      pb.func('random01', [pb.uint('seed')], function () {
+        this.$return(pb.mul(pb.float(pb.compAnd(this.hashU32(this.seed), 0x00ffffff)), 1 / 0x01000000));
       });
 
       pb.main(function () {
@@ -107,7 +117,18 @@ type PointerState = {
           });
           this.pos = pb.add(this.pos, pb.mul(this.vel, this.dt));
 
+          this.invalid = pb.or(
+            pb.notEqual(this.pos.x, this.pos.x),
+            pb.notEqual(this.pos.y, this.pos.y),
+            pb.notEqual(this.vel.x, this.vel.x),
+            pb.notEqual(this.vel.y, this.vel.y),
+            pb.notEqual(this.age, this.age),
+            pb.notEqual(this.seed, this.seed),
+            pb.notEqual(this.life, this.life),
+            pb.notEqual(this.hue, this.hue)
+          );
           this.expired = pb.or(
+            this.invalid,
             pb.greaterThanEqual(this.age, this.life),
             pb.or(
               pb.greaterThan(pb.abs(this.pos.x), pb.mul(this.aspect, 1.16)),
@@ -116,13 +137,13 @@ type PointerState = {
           );
 
           this.$if(this.expired, function () {
-            this.id = pb.float(this.index);
-            this.spawnKey = pb.add(this.id, pb.mul(pb.floor(pb.mul(this.time, 12)), 101.3));
-            this.r0 = this.hash11(pb.add(this.spawnKey, 1.0));
-            this.r1 = this.hash11(pb.add(this.spawnKey, 2.0));
-            this.r2 = this.hash11(pb.add(this.spawnKey, 3.0));
-            this.r3 = this.hash11(pb.add(this.spawnKey, 4.0));
-            this.r4 = this.hash11(pb.add(this.spawnKey, 5.0));
+            this.spawnTick = pb.uint(pb.floor(pb.mul(this.time, 12)));
+            this.spawnKey = pb.compXor(this.index, pb.mul(this.spawnTick, 747796405));
+            this.r0 = this.random01(pb.add(this.spawnKey, 1));
+            this.r1 = this.random01(pb.add(this.spawnKey, 2));
+            this.r2 = this.random01(pb.add(this.spawnKey, 3));
+            this.r3 = this.random01(pb.add(this.spawnKey, 4));
+            this.r4 = this.random01(pb.add(this.spawnKey, 5));
             this.angle = pb.mul(this.r0, 6.2831853);
             this.radius = pb.mul(pb.sqrt(this.r1), this.params.sim.w);
             this.dir = pb.vec2(pb.cos(this.angle), pb.sin(this.angle));
