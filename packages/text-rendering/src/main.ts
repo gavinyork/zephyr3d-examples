@@ -1,5 +1,5 @@
-import { backendWebGL2 } from '@zephyr3d/backend-webgl';
-import { Vector2, Vector3 } from '@zephyr3d/base';
+import { backendWebGL2 } from "@zephyr3d/backend-webgl";
+import { Vector2, Vector3 } from "@zephyr3d/base";
 import {
   Application,
   MSDFText,
@@ -9,19 +9,19 @@ import {
   Scene,
   TextSprite,
   getEngine,
-  getInput
-} from '@zephyr3d/scene';
+  getInput,
+} from "@zephyr3d/scene";
 
-const FONT_URL = 'https://cdn.zephyr3d.org/doc/assets/fonts/Inter-Regular.otf';
+const FONT_URL = "https://cdn.zephyr3d.org/doc/assets/fonts/Inter-Regular.otf";
 
 const myApp = new Application({
   backend: backendWebGL2,
-  canvas: document.querySelector('#canvas')
+  canvas: document.querySelector("#canvas"),
 });
 
 myApp.ready().then(async () => {
   const scene = new Scene();
-  scene.env.light.type = 'none';
+  scene.env.light.type = "none";
 
   const canvasFontFamily = await loadCanvasFont();
   const textureLabel = createTextSprite(scene, canvasFontFamily);
@@ -33,17 +33,23 @@ myApp.ready().then(async () => {
     msdfText = createMSDFText(scene, fontAsset);
     msdfSprite = createMSDFTextSprite(scene, fontAsset);
   } else {
-    textureLabel.text = 'Font asset failed to load';
+    textureLabel.text = "Font asset failed to load";
   }
 
   scene.mainCamera = new PerspectiveCamera(scene, Math.PI / 3, 0.1, 100);
-  scene.mainCamera.lookAt(new Vector3(0, 0, 7), new Vector3(0, 0, 0), Vector3.axisPY());
-  scene.mainCamera.controller = new OrbitCameraController({ center: Vector3.zero() });
+  scene.mainCamera.lookAt(
+    new Vector3(0, 0, 7),
+    new Vector3(0, 0, 0),
+    Vector3.axisPY(),
+  );
+  scene.mainCamera.controller = new OrbitCameraController({
+    center: Vector3.zero(),
+  });
   getInput().use(scene.mainCamera.handleEvent, scene.mainCamera);
 
   getEngine().setRenderable(scene, 0);
 
-  myApp.on('tick', () => {
+  myApp.on("tick", () => {
     const time = myApp.device.frameInfo.elapsedOverall * 0.001;
     textureLabel.rotation.fromEulerAngle(0, 0, Math.sin(time) * 0.12);
     if (msdfText) {
@@ -58,18 +64,18 @@ myApp.ready().then(async () => {
 });
 
 async function loadCanvasFont() {
-  if (!('FontFace' in window) || !document.fonts) {
-    return 'Arial';
+  if (!("FontFace" in window) || !document.fonts) {
+    return "Arial";
   }
   try {
-    const font = new FontFace('InterDemo', `url(${FONT_URL})`);
+    const font = new FontFace("InterDemo", `url(${FONT_URL})`);
     await font.load();
     document.fonts.add(font);
     await document.fonts.ready;
-    return 'InterDemo';
+    return "InterDemo";
   } catch (err) {
-    console.warn('Failed to load canvas font:', err);
-    return 'Arial';
+    console.warn("Failed to load canvas font:", err);
+    return "Arial";
   }
 }
 
@@ -77,17 +83,17 @@ async function loadMSDFFontAsset() {
   try {
     return await getEngine().resourceManager.fetchFontAsset(FONT_URL, {
       pageSize: 1024,
-      glyphSize: 64
+      glyphSize: 64,
     });
   } catch (err) {
-    console.warn('Failed to load MSDF font asset:', err);
+    console.warn("Failed to load MSDF font asset:", err);
     return null;
   }
 }
 
 function createTextSprite(scene, fontFamily) {
   const label = new TextSprite(scene);
-  label.text = 'TextSprite\ncanvas texture';
+  label.text = "TextSprite\ncanvas texture";
   label.font = `bold 42px ${fontFamily}, Arial`;
   label.textColor = new Vector3(1, 0, 0);
   label.resolutionX = 512;
@@ -100,10 +106,10 @@ function createTextSprite(scene, fontFamily) {
 function createMSDFText(scene, fontAsset) {
   const text = new MSDFText(scene);
   text.fontAsset = fontAsset;
-  text.text = 'MSDFText\n3D transform';
+  text.text = "MSDFText\n3D transform";
   text.fontSize = 0.46;
   text.maxWidth = 12;
-  text.textAlign = 'center';
+  text.textAlign = "center";
   text.anchor = new Vector2(0.5, 0.5);
   text.textColor = new Vector3(0.45, 0.9, 1);
   text.outlineColor = new Vector3(0.01, 0.04, 0.08);
@@ -115,10 +121,10 @@ function createMSDFText(scene, fontAsset) {
 function createMSDFTextSprite(scene, fontAsset) {
   const text = new MSDFTextSprite(scene);
   text.fontAsset = fontAsset;
-  text.text = 'MSDFTextSprite\nbillboard label';
+  text.text = "MSDFTextSprite\nbillboard label";
   text.fontSize = 0.34;
   text.maxWidth = 15;
-  text.textAlign = 'center';
+  text.textAlign = "center";
   text.anchor = new Vector2(0.5, 0.5);
   text.textColor = new Vector3(1, 0.82, 0.35);
   text.outlineColor = new Vector3(0, 0, 0);
