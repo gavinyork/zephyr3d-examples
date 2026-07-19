@@ -19,23 +19,23 @@ importers:
         specifier: ^0.1.65
         version: 0.1.71
       '@zephyr3d/backend-webgl':
-        specifier: ^0.1.14
-        version: 0.1.14(rollup@4.30.1)
+        specifier: ^0.1.15
+        version: 0.1.15(rollup@4.30.1)
       '@zephyr3d/backend-webgpu':
-        specifier: ^0.1.18
-        version: 0.1.18(rollup@4.30.1)
+        specifier: ^0.1.19
+        version: 0.1.19(rollup@4.30.1)
       '@zephyr3d/base':
         specifier: ^0.2.8
         version: 0.2.8(rollup@4.30.1)
       '@zephyr3d/device':
-        specifier: ^0.2.15
-        version: 0.2.15(rollup@4.30.1)
+        specifier: ^0.2.16
+        version: 0.2.16(rollup@4.30.1)
       '@zephyr3d/loaders':
         specifier: ^0.1.4
         version: 0.1.4(rollup@4.30.1)
       '@zephyr3d/scene':
-        specifier: ^0.9.19
-        version: 0.9.19(rollup@4.30.1)
+        specifier: ^0.9.20
+        version: 0.9.20(rollup@4.30.1)
     devDependencies:
       '@babel/core':
         specifier: ^7.20.12
@@ -143,23 +143,20 @@ importers:
         specifier: ^0.1.65
         version: 0.1.71
       '@zephyr3d/backend-webgl':
-        specifier: ^0.1.14
-        version: 0.1.14(rollup@4.30.1)
+        specifier: ^0.1.15
+        version: 0.1.15(rollup@4.30.1)
       '@zephyr3d/backend-webgpu':
-        specifier: ^0.1.18
-        version: 0.1.18(rollup@4.30.1)
+        specifier: ^0.1.19
+        version: 0.1.19(rollup@4.30.1)
       '@zephyr3d/base':
         specifier: ^0.2.8
         version: 0.2.8(rollup@4.30.1)
       '@zephyr3d/device':
-        specifier: ^0.2.15
-        version: 0.2.15(rollup@4.30.1)
-      '@zephyr3d/loaders':
-        specifier: ^0.1.4
-        version: 0.1.4(rollup@4.30.1)
+        specifier: ^0.2.16
+        version: 0.2.16(rollup@4.30.1)
       '@zephyr3d/scene':
-        specifier: ^0.9.19
-        version: 0.9.19(rollup@4.30.1)
+        specifier: ^0.9.20
+        version: 0.9.20(rollup@4.30.1)
     devDependencies:
       '@babel/core':
         specifier: ^7.20.12
@@ -267,23 +264,20 @@ importers:
         specifier: ^0.1.65
         version: 0.1.71
       '@zephyr3d/backend-webgl':
-        specifier: ^0.1.14
-        version: 0.1.14(rollup@4.30.1)
+        specifier: ^0.1.15
+        version: 0.1.15(rollup@4.30.1)
       '@zephyr3d/backend-webgpu':
-        specifier: ^0.1.18
-        version: 0.1.18(rollup@4.30.1)
+        specifier: ^0.1.19
+        version: 0.1.19(rollup@4.30.1)
       '@zephyr3d/base':
         specifier: ^0.2.8
         version: 0.2.8(rollup@4.30.1)
       '@zephyr3d/device':
-        specifier: ^0.2.15
-        version: 0.2.15(rollup@4.30.1)
-      '@zephyr3d/loaders':
-        specifier: ^0.1.4
-        version: 0.1.4(rollup@4.30.1)
+        specifier: ^0.2.16
+        version: 0.2.16(rollup@4.30.1)
       '@zephyr3d/scene':
-        specifier: ^0.9.19
-        version: 0.9.19(rollup@4.30.1)
+        specifier: ^0.9.20
+        version: 0.9.20(rollup@4.30.1)
     devDependencies:
       '@babel/core':
         specifier: ^7.20.12
@@ -391,23 +385,20 @@ importers:
         specifier: ^0.1.65
         version: 0.1.71
       '@zephyr3d/backend-webgl':
-        specifier: ^0.1.14
-        version: 0.1.14(rollup@4.30.1)
+        specifier: ^0.1.15
+        version: 0.1.15(rollup@4.30.1)
       '@zephyr3d/backend-webgpu':
-        specifier: ^0.1.18
-        version: 0.1.18(rollup@4.30.1)
+        specifier: ^0.1.19
+        version: 0.1.19(rollup@4.30.1)
       '@zephyr3d/base':
         specifier: ^0.2.8
         version: 0.2.8(rollup@4.30.1)
       '@zephyr3d/device':
-        specifier: ^0.2.15
-        version: 0.2.15(rollup@4.30.1)
-      '@zephyr3d/loaders':
-        specifier: ^0.1.4
-        version: 0.1.4(rollup@4.30.1)
+        specifier: ^0.2.16
+        version: 0.2.16(rollup@4.30.1)
       '@zephyr3d/scene':
-        specifier: ^0.9.19
-        version: 0.9.19(rollup@4.30.1)
+        specifier: ^0.9.20
+        version: 0.9.20(rollup@4.30.1)
     devDependencies:
       '@babel/core':
         specifier: ^7.20.12
@@ -515,20 +506,20 @@ importers:
         specifier: ^0.1.65
         version: 0.1.71
       '@zephyr3d/backend-webgl':
-        specifier: ^0.1.14
-        version: 0.1.14(rollup@4.30.1)
+        specifier: ^0.1.15
+        version: 0.1.15(rollup@4.30.1)
       '@zephyr3d/backend-webgpu':
-        specifier: ^0.1.18
-        version: 0.1.18(rollup@4.30.1)
+        specifier: ^0.1.19
+        version: 0.1.19(rollup@4.30.1)
       '@zephyr3d/base':
         specifier: ^0.2.8
         version: 0.2.8(rollup@4.30.1)
       '@zephyr3d/device':
-        specifier: ^0.2.15
-        version: 0.2.15(rollup@4.30.1)
+        specifier: ^0.2.16
+        version: 0.2.16(rollup@4.30.1)
       '@zephyr3d/scene':
-        specifier: ^0.9.19
-        version: 0.9.19(rollup@4.30.1)
+        specifier: ^0.9.20
+        version: 0.9.20(rollup@4.30.1)
     devDependencies:
       '@babel/core':
         specifier: ^7.20.12
@@ -636,20 +627,20 @@ importers:
         specifier: ^0.1.65
         version: 0.1.71
       '@zephyr3d/backend-webgl':
-        specifier: ^0.1.14
-        version: 0.1.14(rollup@4.30.1)
+        specifier: ^0.1.15
+        version: 0.1.15(rollup@4.30.1)
       '@zephyr3d/backend-webgpu':
-        specifier: ^0.1.18
-        version: 0.1.18(rollup@4.30.1)
+        specifier: ^0.1.19
+        version: 0.1.19(rollup@4.30.1)
       '@zephyr3d/base':
         specifier: ^0.2.8
         version: 0.2.8(rollup@4.30.1)
       '@zephyr3d/device':
-        specifier: ^0.2.15
-        version: 0.2.15(rollup@4.30.1)
+        specifier: ^0.2.16
+        version: 0.2.16(rollup@4.30.1)
       '@zephyr3d/scene':
-        specifier: ^0.9.19
-        version: 0.9.19(rollup@4.30.1)
+        specifier: ^0.9.20
+        version: 0.9.20(rollup@4.30.1)
     devDependencies:
       '@babel/core':
         specifier: ^7.20.12
@@ -757,20 +748,20 @@ importers:
         specifier: ^0.1.65
         version: 0.1.71
       '@zephyr3d/backend-webgl':
-        specifier: ^0.1.14
-        version: 0.1.14(rollup@4.30.1)
+        specifier: ^0.1.15
+        version: 0.1.15(rollup@4.30.1)
       '@zephyr3d/backend-webgpu':
-        specifier: ^0.1.18
-        version: 0.1.18(rollup@4.30.1)
+        specifier: ^0.1.19
+        version: 0.1.19(rollup@4.30.1)
       '@zephyr3d/base':
         specifier: ^0.2.8
         version: 0.2.8(rollup@4.30.1)
       '@zephyr3d/device':
-        specifier: ^0.2.15
-        version: 0.2.15(rollup@4.30.1)
+        specifier: ^0.2.16
+        version: 0.2.16(rollup@4.30.1)
       '@zephyr3d/scene':
-        specifier: ^0.9.19
-        version: 0.9.19(rollup@4.30.1)
+        specifier: ^0.9.20
+        version: 0.9.20(rollup@4.30.1)
     devDependencies:
       '@babel/core':
         specifier: ^7.20.12
@@ -878,20 +869,20 @@ importers:
         specifier: ^0.1.65
         version: 0.1.71
       '@zephyr3d/backend-webgl':
-        specifier: ^0.1.14
-        version: 0.1.14(rollup@4.30.1)
+        specifier: ^0.1.15
+        version: 0.1.15(rollup@4.30.1)
       '@zephyr3d/backend-webgpu':
-        specifier: ^0.1.18
-        version: 0.1.18(rollup@4.30.1)
+        specifier: ^0.1.19
+        version: 0.1.19(rollup@4.30.1)
       '@zephyr3d/base':
         specifier: ^0.2.8
         version: 0.2.8(rollup@4.30.1)
       '@zephyr3d/device':
-        specifier: ^0.2.15
-        version: 0.2.15(rollup@4.30.1)
+        specifier: ^0.2.16
+        version: 0.2.16(rollup@4.30.1)
       '@zephyr3d/scene':
-        specifier: ^0.9.19
-        version: 0.9.19(rollup@4.30.1)
+        specifier: ^0.9.20
+        version: 0.9.20(rollup@4.30.1)
     devDependencies:
       '@babel/core':
         specifier: ^7.20.12
@@ -999,20 +990,20 @@ importers:
         specifier: ^0.1.65
         version: 0.1.71
       '@zephyr3d/backend-webgl':
-        specifier: ^0.1.14
-        version: 0.1.14(rollup@4.30.1)
+        specifier: ^0.1.15
+        version: 0.1.15(rollup@4.30.1)
       '@zephyr3d/backend-webgpu':
-        specifier: ^0.1.18
-        version: 0.1.18(rollup@4.30.1)
+        specifier: ^0.1.19
+        version: 0.1.19(rollup@4.30.1)
       '@zephyr3d/base':
         specifier: ^0.2.8
         version: 0.2.8(rollup@4.30.1)
       '@zephyr3d/device':
-        specifier: ^0.2.15
-        version: 0.2.15(rollup@4.30.1)
+        specifier: ^0.2.16
+        version: 0.2.16(rollup@4.30.1)
       '@zephyr3d/scene':
-        specifier: ^0.9.19
-        version: 0.9.19(rollup@4.30.1)
+        specifier: ^0.9.20
+        version: 0.9.20(rollup@4.30.1)
     devDependencies:
       '@babel/core':
         specifier: ^7.20.12
@@ -1120,20 +1111,20 @@ importers:
         specifier: ^0.1.65
         version: 0.1.71
       '@zephyr3d/backend-webgl':
-        specifier: ^0.1.14
-        version: 0.1.14(rollup@4.30.1)
+        specifier: ^0.1.15
+        version: 0.1.15(rollup@4.30.1)
       '@zephyr3d/backend-webgpu':
-        specifier: ^0.1.18
-        version: 0.1.18(rollup@4.30.1)
+        specifier: ^0.1.19
+        version: 0.1.19(rollup@4.30.1)
       '@zephyr3d/base':
         specifier: ^0.2.8
         version: 0.2.8(rollup@4.30.1)
       '@zephyr3d/device':
-        specifier: ^0.2.15
-        version: 0.2.15(rollup@4.30.1)
+        specifier: ^0.2.16
+        version: 0.2.16(rollup@4.30.1)
       '@zephyr3d/scene':
-        specifier: ^0.9.19
-        version: 0.9.19(rollup@4.30.1)
+        specifier: ^0.9.20
+        version: 0.9.20(rollup@4.30.1)
     devDependencies:
       '@babel/core':
         specifier: ^7.20.12
@@ -1241,20 +1232,20 @@ importers:
         specifier: ^0.1.65
         version: 0.1.71
       '@zephyr3d/backend-webgl':
-        specifier: ^0.1.14
-        version: 0.1.14(rollup@4.30.1)
+        specifier: ^0.1.15
+        version: 0.1.15(rollup@4.30.1)
       '@zephyr3d/backend-webgpu':
-        specifier: ^0.1.18
-        version: 0.1.18(rollup@4.30.1)
+        specifier: ^0.1.19
+        version: 0.1.19(rollup@4.30.1)
       '@zephyr3d/base':
         specifier: ^0.2.8
         version: 0.2.8(rollup@4.30.1)
       '@zephyr3d/device':
-        specifier: ^0.2.15
-        version: 0.2.15(rollup@4.30.1)
+        specifier: ^0.2.16
+        version: 0.2.16(rollup@4.30.1)
       '@zephyr3d/scene':
-        specifier: ^0.9.19
-        version: 0.9.19(rollup@4.30.1)
+        specifier: ^0.9.20
+        version: 0.9.20(rollup@4.30.1)
     devDependencies:
       '@babel/core':
         specifier: ^7.20.12
@@ -1362,20 +1353,20 @@ importers:
         specifier: ^0.1.65
         version: 0.1.71
       '@zephyr3d/backend-webgl':
-        specifier: ^0.1.14
-        version: 0.1.14(rollup@4.30.1)
+        specifier: ^0.1.15
+        version: 0.1.15(rollup@4.30.1)
       '@zephyr3d/backend-webgpu':
-        specifier: ^0.1.18
-        version: 0.1.18(rollup@4.30.1)
+        specifier: ^0.1.19
+        version: 0.1.19(rollup@4.30.1)
       '@zephyr3d/base':
         specifier: ^0.2.8
         version: 0.2.8(rollup@4.30.1)
       '@zephyr3d/device':
-        specifier: ^0.2.15
-        version: 0.2.15(rollup@4.30.1)
+        specifier: ^0.2.16
+        version: 0.2.16(rollup@4.30.1)
       '@zephyr3d/scene':
-        specifier: ^0.9.19
-        version: 0.9.19(rollup@4.30.1)
+        specifier: ^0.9.20
+        version: 0.9.20(rollup@4.30.1)
     devDependencies:
       '@babel/core':
         specifier: ^7.20.12
@@ -1483,20 +1474,20 @@ importers:
         specifier: ^0.1.65
         version: 0.1.71
       '@zephyr3d/backend-webgl':
-        specifier: ^0.1.14
-        version: 0.1.14(rollup@4.30.1)
+        specifier: ^0.1.15
+        version: 0.1.15(rollup@4.30.1)
       '@zephyr3d/backend-webgpu':
-        specifier: ^0.1.18
-        version: 0.1.18(rollup@4.30.1)
+        specifier: ^0.1.19
+        version: 0.1.19(rollup@4.30.1)
       '@zephyr3d/base':
         specifier: ^0.2.8
         version: 0.2.8(rollup@4.30.1)
       '@zephyr3d/device':
-        specifier: ^0.2.15
-        version: 0.2.15(rollup@4.30.1)
+        specifier: ^0.2.16
+        version: 0.2.16(rollup@4.30.1)
       '@zephyr3d/scene':
-        specifier: ^0.9.19
-        version: 0.9.19(rollup@4.30.1)
+        specifier: ^0.9.20
+        version: 0.9.20(rollup@4.30.1)
     devDependencies:
       '@babel/core':
         specifier: ^7.20.12
@@ -1604,20 +1595,20 @@ importers:
         specifier: ^0.1.65
         version: 0.1.71
       '@zephyr3d/backend-webgl':
-        specifier: ^0.1.14
-        version: 0.1.14(rollup@4.30.1)
+        specifier: ^0.1.15
+        version: 0.1.15(rollup@4.30.1)
       '@zephyr3d/backend-webgpu':
-        specifier: ^0.1.18
-        version: 0.1.18(rollup@4.30.1)
+        specifier: ^0.1.19
+        version: 0.1.19(rollup@4.30.1)
       '@zephyr3d/base':
         specifier: ^0.2.8
         version: 0.2.8(rollup@4.30.1)
       '@zephyr3d/device':
-        specifier: ^0.2.15
-        version: 0.2.15(rollup@4.30.1)
+        specifier: ^0.2.16
+        version: 0.2.16(rollup@4.30.1)
       '@zephyr3d/scene':
-        specifier: ^0.9.19
-        version: 0.9.19(rollup@4.30.1)
+        specifier: ^0.9.20
+        version: 0.9.20(rollup@4.30.1)
     devDependencies:
       '@babel/core':
         specifier: ^7.20.12
@@ -1725,20 +1716,20 @@ importers:
         specifier: ^0.1.65
         version: 0.1.71
       '@zephyr3d/backend-webgl':
-        specifier: ^0.1.14
-        version: 0.1.14(rollup@4.30.1)
+        specifier: ^0.1.15
+        version: 0.1.15(rollup@4.30.1)
       '@zephyr3d/backend-webgpu':
-        specifier: ^0.1.18
-        version: 0.1.18(rollup@4.30.1)
+        specifier: ^0.1.19
+        version: 0.1.19(rollup@4.30.1)
       '@zephyr3d/base':
         specifier: ^0.2.8
         version: 0.2.8(rollup@4.30.1)
       '@zephyr3d/device':
-        specifier: ^0.2.15
-        version: 0.2.15(rollup@4.30.1)
+        specifier: ^0.2.16
+        version: 0.2.16(rollup@4.30.1)
       '@zephyr3d/scene':
-        specifier: ^0.9.19
-        version: 0.9.19(rollup@4.30.1)
+        specifier: ^0.9.20
+        version: 0.9.20(rollup@4.30.1)
     devDependencies:
       '@babel/core':
         specifier: ^7.20.12
@@ -1846,20 +1837,20 @@ importers:
         specifier: ^0.1.65
         version: 0.1.71
       '@zephyr3d/backend-webgl':
-        specifier: ^0.1.14
-        version: 0.1.14(rollup@4.30.1)
+        specifier: ^0.1.15
+        version: 0.1.15(rollup@4.30.1)
       '@zephyr3d/backend-webgpu':
-        specifier: ^0.1.18
-        version: 0.1.18(rollup@4.30.1)
+        specifier: ^0.1.19
+        version: 0.1.19(rollup@4.30.1)
       '@zephyr3d/base':
         specifier: ^0.2.8
         version: 0.2.8(rollup@4.30.1)
       '@zephyr3d/device':
-        specifier: ^0.2.15
-        version: 0.2.15(rollup@4.30.1)
+        specifier: ^0.2.16
+        version: 0.2.16(rollup@4.30.1)
       '@zephyr3d/scene':
-        specifier: ^0.9.19
-        version: 0.9.19(rollup@4.30.1)
+        specifier: ^0.9.20
+        version: 0.9.20(rollup@4.30.1)
     devDependencies:
       '@babel/core':
         specifier: ^7.20.12
@@ -3291,28 +3282,28 @@ packages:
   '@webgpu/types@0.1.71':
     resolution: {integrity: sha512-mMy8/ODcKhab808co15eW+yN+HgXoQxRQHTiBV9Mrvl1r0ufnid7YOcI+gi4eUWSWl9ezD6TW2KXccrL8HCh2A==}
 
-  '@zephyr3d/backend-webgl@0.1.14':
-    resolution: {integrity: sha512-+UVMvlNrAS9JwTUoeJwyT87leUVXqXlJjltzSkU3ay3yTp5icgqaQBJXio7VkGkOWbNHKC7QHGmw5LjGHF7fdg==}
+  '@zephyr3d/backend-webgl@0.1.15':
+    resolution: {integrity: sha512-gnxljFWlmJV4tZG+6m8wu/ofVM0AVn4x0J3vz0GV2w+5L5i6PP9VijNM1XBFH773g/B9QW4H/2yOxbpcitI5TQ==}
     engines: {node: '>=16.18.0'}
 
-  '@zephyr3d/backend-webgpu@0.1.18':
-    resolution: {integrity: sha512-SiVVoa7HjpD7mo7FRJNrn+uFckLbYDcU0H3wCC7atlzjX4/vJ85hkw7RnVFGWPDyRGogKiSSxUBlAebjCLiRlg==}
+  '@zephyr3d/backend-webgpu@0.1.19':
+    resolution: {integrity: sha512-571A65zEQ3YCRdkLox0HfbIZKw0fmIH5sCycLwbwoL3Zg50bYmAfos12ZKFzRST4jnh/HZrjrrFgR1zlUrxc0Q==}
     engines: {node: '>=16.18.0'}
 
   '@zephyr3d/base@0.2.8':
     resolution: {integrity: sha512-q3eJxs3joeYNfXsjyJkyG7XbrR77EHj14y/z4XPO/1KELZplHMvfpELCY7UPQNT/8i84tjwOiK+afKEa58oQpA==}
     engines: {node: '>=16.18.0'}
 
-  '@zephyr3d/device@0.2.15':
-    resolution: {integrity: sha512-GJ3C8qUATsWqF/BBO8h7mudlJhg317+uwvj7L836uffPvBrVhz6/tsvn0GBW4x/dE67qB/R8dnHX15K5uoIysA==}
+  '@zephyr3d/device@0.2.16':
+    resolution: {integrity: sha512-ArCK0bSjpaCx1fvez596lg+szn2xpGNwLWkzSYK02ddAlfbzlb3YXsxkklfDzZBK//lGMHRHkLmCrm2oCHXRsA==}
     engines: {node: '>=16.18.0'}
 
   '@zephyr3d/loaders@0.1.4':
     resolution: {integrity: sha512-3h14z36X/3ujrs7w0WylKFGW+F7jQTi5pxTbYEW8YEwYGSdn9iqpyU2yZdxo2yH1mDuBX9Sxa0k1Jer8tagEUg==}
     engines: {node: '>=16.18.0'}
 
-  '@zephyr3d/scene@0.9.19':
-    resolution: {integrity: sha512-TN5+4bSPXmohJBoJTYhe35VkegmoF95U3AGf8Zgcu5ThIlzNyHJ84JpLOZkhyFZ9kZMj6lKfGVP+KY6Y+vTYNQ==}
+  '@zephyr3d/scene@0.9.20':
+    resolution: {integrity: sha512-n7bssMSny4YouPOLSgudm0oyZfEfQv/LY7ulhOfEoKpWa5QMSOB5kp1lpyWfTVbFgMjVL9stFLneGHt3FfUA8g==}
     engines: {node: '>=16.18.0'}
 
   accepts@1.3.8:
@@ -6747,24 +6738,24 @@ snapshots:
 
   '@webgpu/types@0.1.71': {}
 
-  '@zephyr3d/backend-webgl@0.1.14(rollup@4.30.1)':
+  '@zephyr3d/backend-webgl@0.1.15(rollup@4.30.1)':
     dependencies:
       '@rollup/plugin-commonjs': 28.0.9(rollup@4.30.1)
       '@types/node': 22.20.0
       '@webgpu/types': 0.1.71
       '@zephyr3d/base': 0.2.8(rollup@4.30.1)
-      '@zephyr3d/device': 0.2.15(rollup@4.30.1)
+      '@zephyr3d/device': 0.2.16(rollup@4.30.1)
       rollup-plugin-import-css: 3.5.8(rollup@4.30.1)
     transitivePeerDependencies:
       - rollup
 
-  '@zephyr3d/backend-webgpu@0.1.18(rollup@4.30.1)':
+  '@zephyr3d/backend-webgpu@0.1.19(rollup@4.30.1)':
     dependencies:
       '@rollup/plugin-commonjs': 28.0.9(rollup@4.30.1)
       '@types/node': 22.20.0
       '@webgpu/types': 0.1.71
       '@zephyr3d/base': 0.2.8(rollup@4.30.1)
-      '@zephyr3d/device': 0.2.15(rollup@4.30.1)
+      '@zephyr3d/device': 0.2.16(rollup@4.30.1)
       rollup-plugin-import-css: 3.5.8(rollup@4.30.1)
     transitivePeerDependencies:
       - rollup
@@ -6777,7 +6768,7 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  '@zephyr3d/device@0.2.15(rollup@4.30.1)':
+  '@zephyr3d/device@0.2.16(rollup@4.30.1)':
     dependencies:
       '@rollup/plugin-commonjs': 28.0.9(rollup@4.30.1)
       '@types/node': 22.20.0
@@ -6792,17 +6783,17 @@ snapshots:
       '@types/draco3d': 1.4.10
       '@webgpu/types': 0.1.71
       '@zephyr3d/base': 0.2.8(rollup@4.30.1)
-      '@zephyr3d/device': 0.2.15(rollup@4.30.1)
-      '@zephyr3d/scene': 0.9.19(rollup@4.30.1)
+      '@zephyr3d/device': 0.2.16(rollup@4.30.1)
+      '@zephyr3d/scene': 0.9.20(rollup@4.30.1)
     transitivePeerDependencies:
       - rollup
 
-  '@zephyr3d/scene@0.9.19(rollup@4.30.1)':
+  '@zephyr3d/scene@0.9.20(rollup@4.30.1)':
     dependencies:
       '@types/draco3d': 1.4.10
       '@webgpu/types': 0.1.71
       '@zephyr3d/base': 0.2.8(rollup@4.30.1)
-      '@zephyr3d/device': 0.2.15(rollup@4.30.1)
+      '@zephyr3d/device': 0.2.16(rollup@4.30.1)
       es-module-lexer: 1.7.0
     transitivePeerDependencies:
       - rollup
