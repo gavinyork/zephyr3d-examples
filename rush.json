@@ -447,6 +447,10 @@
       "projectFolder": "packages/shadow-rendering"
     },
     {
+      "packageName": "zephyr3d-example-oit-rendering",
+      "projectFolder": "packages/oit-rendering"
+    },
+    {
       "packageName": "zephyr3d-example-text-rendering",
       "projectFolder": "packages/text-rendering"
     },

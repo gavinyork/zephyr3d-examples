@@ -1,0 +1,4 @@
+{
+  "compilerOptions": {"moduleResolution":"bundler","target":"es2022","module":"es2022","lib":["ES2022","DOM","DOM.Iterable"],"strict":true,"noImplicitAny":false,"noUnusedLocals":true,"strictNullChecks":false,"allowSyntheticDefaultImports":true,"sourceMap":true,"typeRoots":["./node_modules/@webgpu/types"]},
+  "exclude": ["node_modules", "dist"]
+}
