@@ -115,6 +115,10 @@ export class Vehicle {
     this._wheelSpin = new Array(wheelCount).fill(0);
   }
 
+  /** Chassis node */
+  get chassisNode(): Mesh {
+    return this._chassisNode;
+  }
   /** Current forward speed magnitude in m/s. */
   get speed(): number {
     const v = this._chassis.linvel();

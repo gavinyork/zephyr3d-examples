@@ -1,5 +1,6 @@
 import { Vector3, Vector4 } from '@zephyr3d/base';
-import { backendWebGL2 } from '@zephyr3d/backend-webgl';
+import { backendWebGL2, backendWebGL1 } from '@zephyr3d/backend-webgl';
+import { backendWebGPU } from '@zephyr3d/backend-webgpu';
 import {
   Application,
   DirectionalLight,
@@ -16,35 +17,28 @@ import { Vehicle } from './vehicle';
 import { ChaseCameraController } from './chase-camera';
 import { InputController } from './input';
 import { Hud } from './hud';
+import type { DeviceBackend } from '@zephyr3d/device';
 
 // Rapier WASM must be initialized before any physics API is used.
 await initPhysics();
 
 const app = new Application({
   canvas: document.querySelector<HTMLCanvasElement>('#canvas'),
-  backend: backendWebGL2
+  backend: await getBackend()
 });
 
 await app.ready();
 
 const scene = new Scene();
 
-// --- Environment: dusk scatter sky + image-based lighting ---
-scene.env.sky.skyType = 'scatter';
-scene.env.sky.cloudy = 0.4;
-scene.env.sky.fogType = 'height_fog';
-scene.env.light.type = 'ibl'; // scene auto-syncs IBL maps from the sky each frame
-
 // Sun (first directional light becomes the scene sun automatically).
 const sun = new DirectionalLight(scene);
 sun.lookAt(new Vector3(-6, 5, -4), Vector3.zero(), Vector3.axisPY());
 sun.color = new Vector4(1.0, 0.85, 0.7, 1);
-sun.intensity = 8;
+sun.intensity = 10;
 sun.castShadow = true;
 sun.shadow.mode = 'pcf';
-sun.shadow.depthBias = 0.1;
-sun.shadow.numShadowCascades = 4;
-sun.shadow.shadowDistance = 50;
+sun.shadow.depthBias = 0.01;
 
 // --- Terrain (render) + physics heightfield from the same CPU heights ---
 const terrainData = createTerrain(scene, 256, 400, 40);
@@ -59,6 +53,7 @@ water.waveGenerator = new FBMWaveGenerator();
 // --- Vehicle: spawn above the terrain centre so it drops onto the ground ---
 const spawnH = terrainData.sampleHeight(0, 0) + 3;
 const vehicle = new Vehicle(scene, physics, new Vector3(0, spawnH, 0));
+sun.shadow.shadowRegion.addDynamicCaster(vehicle.chassisNode);
 
 // --- Camera: third-person chase with damped follow + speed FOV ---
 const camera = new PerspectiveCamera(scene, Math.PI / 4, 0.25, 2000);
@@ -96,3 +91,20 @@ app.on('tick', (deltaMs: number) => {
 });
 
 app.run();
+
+async function getBackend(): Promise<DeviceBackend> {
+  const type = new URL(location.href).searchParams.get('dev') || 'webgpu';
+  if (type === 'webgpu') {
+    if (await backendWebGPU.supported()) {
+      return backendWebGPU;
+    }
+    console.warn('No WebGPU support, fall back to WebGL2');
+  }
+  if (type === 'webgl2' || type === 'webgpu') {
+    if (await backendWebGL2.supported()) {
+      return backendWebGL2;
+    }
+    console.warn('No WebGL2 support, fall back to WebGL1');
+  }
+  return backendWebGL1;
+}
