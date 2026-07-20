@@ -463,6 +463,10 @@
       "projectFolder": "packages/computeraytracer"
     },
     {
+      "packageName": "zephyr3d-example-car-demo",
+      "projectFolder": "packages/car-demo"
+    },
+    {
       "packageName": "zephyr3d-example-rendergraph-pass-only",
       "projectFolder": "packages/rendergraph-pass-only"
     },
