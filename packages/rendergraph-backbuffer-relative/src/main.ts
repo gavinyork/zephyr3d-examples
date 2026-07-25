@@ -135,14 +135,14 @@ myApp.ready().then(async () => {
     const renderTargetColorTexture = graph.addPass(
       "RenderToTexture",
       (builder) => {
-        const colorTexture = builder.createTexture({
+        const colorTexture = builder.createTexture<Texture2D>({
           label: "RenderTargetColor",
           format: "rgba8unorm",
           sizeMode: "backbuffer-relative",
           width: renderScale,
           height: renderScale,
         });
-        const depthTexture = builder.createTexture({
+        const depthTexture = builder.createTexture<Texture2D>({
           label: "RenderTargetDepth",
           format: "d16",
           sizeMode: "backbuffer-relative",
@@ -152,7 +152,7 @@ myApp.ready().then(async () => {
 
         // A framebuffer is also a graph resource. Its attachments declare dependencies
         // on the color and depth textures created above.
-        const framebuffer = builder.createFramebuffer({
+        const framebuffer = builder.createFramebuffer<FrameBuffer>({
           label: "RenderTargetFramebuffer",
           width: renderTargetWidth,
           height: renderTargetHeight,
@@ -168,7 +168,7 @@ myApp.ready().then(async () => {
           );
 
           // Resolve the logical framebuffer handle to the real framebuffer for this pass.
-          device.setFramebuffer(rgCtx.getFramebuffer<FrameBuffer>(framebuffer));
+          device.setFramebuffer(rgCtx.getFramebuffer(framebuffer));
           device.clearFrameBuffer(new Vector4(0, 0.32, 0.16, 1), 1, 0);
           bindGroup.setValue("worldMatrix", worldMatrix);
           bindGroup.setValue("projMatrix", projMatrix);
@@ -202,7 +202,7 @@ myApp.ready().then(async () => {
         bindGroupTextured.setValue("projMatrix", projMatrix);
         bindGroupTextured.setTexture(
           "tex",
-          rgCtx.getTexture<Texture2D>(renderTargetColorTexture),
+          rgCtx.getTexture(renderTargetColorTexture),
         );
         device.setBindGroup(0, bindGroupTextured);
         device.setProgram(programTextured);

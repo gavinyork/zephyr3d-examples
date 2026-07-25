@@ -1,7 +1,7 @@
 import { Matrix4x4, Quaternion, Vector3, Vector4 } from "@zephyr3d/base";
 import { backendWebGL1, backendWebGL2 } from "@zephyr3d/backend-webgl";
 import { backendWebGPU } from "@zephyr3d/backend-webgpu";
-import type { DeviceBackend } from "@zephyr3d/device";
+import type { DeviceBackend, Texture2D } from "@zephyr3d/device";
 import { DrawText } from "@zephyr3d/device";
 import {
   Application,
@@ -84,7 +84,7 @@ myApp.ready().then(async () => {
     );
 
     const graph = new RenderGraph();
-    const backbuffer = graph.importTexture("backbuffer");
+    const backbuffer = graph.importTexture<Texture2D>("backbuffer");
     let compiledPassNames = "";
 
     const presentedBackbuffer = graph.addPass(
@@ -92,7 +92,7 @@ myApp.ready().then(async () => {
       (builder) => {
         // write() creates the post-write version of the imported backbuffer.
         // The returned handle is the graph output passed to compile().
-        const outputBackbuffer = builder.write(backbuffer);
+        const outputBackbuffer = builder.write(backbuffer, { load: "discard" });
         builder.setExecute(() => {
           const projMatrix = Matrix4x4.perspective(
             1.5,

@@ -153,11 +153,11 @@ myApp.ready().then(async () => {
 
     // Pass 1: render the current frame into graph-managed full-resolution textures.
     const currentColorTexture = graph.addPass("RenderCurrent", (builder) => {
-      const colorTexture = builder.createTexture({
+      const colorTexture = builder.createTexture<Texture2D>({
         ...historyTextureDesc,
         label: "CurrentColor",
       });
-      const depthTexture = builder.createTexture({
+      const depthTexture = builder.createTexture<Texture2D>({
         label: "RenderTargetDepth",
         format: "d16",
         sizeMode: "backbuffer-relative",
@@ -167,7 +167,7 @@ myApp.ready().then(async () => {
 
       // A framebuffer is also a graph resource. Its attachments declare dependencies
       // on the color and depth textures created above.
-      const framebuffer = builder.createFramebuffer({
+      const framebuffer = builder.createFramebuffer<FrameBuffer>({
         label: "CurrentFramebuffer",
         width: backBufferWidth,
         height: backBufferHeight,
@@ -183,7 +183,7 @@ myApp.ready().then(async () => {
         );
 
         // Resolve the logical framebuffer handle to the real framebuffer for this pass.
-        device.setFramebuffer(rgCtx.getFramebuffer<FrameBuffer>(framebuffer));
+        device.setFramebuffer(rgCtx.getFramebuffer(framebuffer));
         device.clearFrameBuffer(new Vector4(0.04, 0.05, 0.1, 1), 1, 0);
         bindGroup.setValue("worldMatrix", worldMatrix);
         bindGroup.setValue("projMatrix", projMatrix);
@@ -203,11 +203,11 @@ myApp.ready().then(async () => {
         if (previousHistoryTexture) {
           builder.read(previousHistoryTexture);
         }
-        const resolvedTexture = builder.createTexture({
+        const resolvedTexture = builder.createTexture<Texture2D>({
           ...historyTextureDesc,
           label: "ResolvedHistoryColor",
         });
-        const framebuffer = builder.createFramebuffer({
+        const framebuffer = builder.createFramebuffer<FrameBuffer>({
           label: "ResolvedHistoryFramebuffer",
           width: backBufferWidth,
           height: backBufferHeight,
@@ -215,12 +215,11 @@ myApp.ready().then(async () => {
           depthAttachment: null,
         });
         builder.setExecute((rgCtx) => {
-          const currentTexture =
-            rgCtx.getTexture<Texture2D>(currentColorTexture);
+          const currentTexture = rgCtx.getTexture(currentColorTexture);
           const historyTexture = previousHistoryTexture
             ? rgCtx.getTexture<Texture2D>(previousHistoryTexture)
             : currentTexture;
-          device.setFramebuffer(rgCtx.getFramebuffer<FrameBuffer>(framebuffer));
+          device.setFramebuffer(rgCtx.getFramebuffer(framebuffer));
           device.clearFrameBuffer(new Vector4(0, 0, 0, 1), 1, 0);
           bindGroupHistoryBlend.setTexture("currentTex", currentTexture);
           bindGroupHistoryBlend.setTexture("historyTex", historyTexture);
@@ -249,9 +248,7 @@ myApp.ready().then(async () => {
       builder.read(resolvedHistoryTexture);
       builder.sideEffect();
       builder.setExecute((rgCtx) => {
-        const resolvedTexture = rgCtx.getTexture<Texture2D>(
-          resolvedHistoryTexture,
-        );
+        const resolvedTexture = rgCtx.getTexture(resolvedHistoryTexture);
         device.setFramebuffer(null);
         device.clearFrameBuffer(new Vector4(0, 0, 0, 1), 1, 0);
         bindGroupPresent.setTexture("currentTex", resolvedTexture);

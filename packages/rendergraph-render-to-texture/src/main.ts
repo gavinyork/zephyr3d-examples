@@ -124,14 +124,14 @@ myApp.ready().then(async () => {
     const renderTargetColorTexture = graph.addPass(
       "RenderToTexture",
       (builder) => {
-        const colorTexture = builder.createTexture({
+        const colorTexture = builder.createTexture<Texture2D>({
           label: "RenderTargetColor",
           format: "rgba8unorm",
           sizeMode: "absolute",
           width: 512,
           height: 512,
         });
-        const depthTexture = builder.createTexture({
+        const depthTexture = builder.createTexture<Texture2D>({
           label: "RenderTargetDepth",
           format: "d16",
           sizeMode: "absolute",
@@ -141,7 +141,7 @@ myApp.ready().then(async () => {
 
         // A framebuffer is also a graph resource. Its attachments declare dependencies
         // on the color and depth textures created above.
-        const framebuffer = builder.createFramebuffer({
+        const framebuffer = builder.createFramebuffer<FrameBuffer>({
           label: "RenderTargetFramebuffer",
           width: 512,
           height: 512,
@@ -152,7 +152,7 @@ myApp.ready().then(async () => {
           const projMatrix = Matrix4x4.perspective(1.5, 1, 1, 50);
 
           // Resolve the logical framebuffer handle to the real framebuffer for this pass.
-          device.setFramebuffer(rgCtx.getFramebuffer<FrameBuffer>(framebuffer));
+          device.setFramebuffer(rgCtx.getFramebuffer(framebuffer));
           device.clearFrameBuffer(new Vector4(0.5, 0, 0, 1), 1, 0);
           bindGroup.setValue("worldMatrix", worldMatrix);
           bindGroup.setValue("projMatrix", projMatrix);
@@ -186,7 +186,7 @@ myApp.ready().then(async () => {
         bindGroupTextured.setValue("projMatrix", projMatrix);
         bindGroupTextured.setTexture(
           "tex",
-          rgCtx.getTexture<Texture2D>(renderTargetColorTexture),
+          rgCtx.getTexture(renderTargetColorTexture),
         );
         device.setBindGroup(0, bindGroupTextured);
         device.setProgram(programTextured);
