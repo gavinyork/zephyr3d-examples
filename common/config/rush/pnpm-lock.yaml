@@ -1883,6 +1883,55 @@ importers:
         specifier: ^5.7.3
         version: 5.9.3
 
+  ../../packages/renderpipeline-outline:
+    dependencies:
+      '@webgpu/types':
+        specifier: ^0.1.65
+        version: 0.1.71
+      '@zephyr3d/backend-webgl':
+        specifier: ^0.1.15
+        version: 0.1.15(rollup@4.30.1)
+      '@zephyr3d/backend-webgpu':
+        specifier: ^0.1.19
+        version: 0.1.19(rollup@4.30.1)
+      '@zephyr3d/base':
+        specifier: ^0.2.8
+        version: 0.2.8(rollup@4.30.1)
+      '@zephyr3d/device':
+        specifier: ^0.2.16
+        version: 0.2.16(rollup@4.30.1)
+      '@zephyr3d/scene':
+        specifier: ^0.9.21
+        version: 0.9.21(rollup@4.30.1)
+    devDependencies:
+      '@rollup/plugin-node-resolve':
+        specifier: ~16.0.0
+        version: 16.0.3(rollup@4.30.1)
+      '@swc/core':
+        specifier: ^1.3.62
+        version: 1.15.43
+      '@web/dev-server':
+        specifier: ^0.1.35
+        version: 0.1.38
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      rollup:
+        specifier: ~4.30.1
+        version: 4.30.1
+      rollup-plugin-copy:
+        specifier: ^3.4.0
+        version: 3.5.0
+      rollup-plugin-swc3:
+        specifier: ~0.12.1
+        version: 0.12.1(@swc/core@1.15.43)(rollup@4.30.1)
+      shx:
+        specifier: ^0.3.4
+        version: 0.3.4
+      typescript:
+        specifier: ^5.7.3
+        version: 5.9.3
+
   ../../packages/shadow-rendering:
     dependencies:
       '@rollup/plugin-commonjs':

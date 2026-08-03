@@ -505,6 +505,10 @@
     {
       "packageName": "zephyr3d-example-rendergraph-profiling",
       "projectFolder": "packages/rendergraph-profiling"
+    },
+    {
+      "packageName": "zephyr3d-example-renderpipeline-outline",
+      "projectFolder": "packages/renderpipeline-outline"
     }
   ]
 }
