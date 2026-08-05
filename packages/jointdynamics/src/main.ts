@@ -1,11 +1,11 @@
 // Demo entry point — scene setup + animation loop
 
-import { createBoneChainDemo, type BoneChainDemo } from "./bone-chain";
-import { createClothGridDemo, type ClothGridDemo } from "./cloth-grid";
-import { createBarrelClothDemo, type BarrelClothDemo } from "./barrel-cloth";
-import { createClosedChainDemo, type ClosedChainDemo } from "./closed-chain";
-import { Plane, Vector2, Vector3 } from "@zephyr3d/base";
-import type { IControllerPointerDownEvent, SceneNode } from "@zephyr3d/scene";
+import { createBoneChainDemo, type BoneChainDemo } from './bone-chain';
+import { createClothGridDemo, type ClothGridDemo } from './cloth-grid';
+import { createBarrelClothDemo, type BarrelClothDemo } from './barrel-cloth';
+import { createClosedChainDemo, type ClosedChainDemo } from './closed-chain';
+import { Plane, Vector2, Vector3 } from '@zephyr3d/base';
+import type { IControllerPointerDownEvent, SceneNode } from '@zephyr3d/scene';
 import {
   Application,
   DirectionalLight,
@@ -14,14 +14,14 @@ import {
   OrbitCameraController,
   PerspectiveCamera,
   RaycastVisitor,
-  Scene,
-} from "@zephyr3d/scene";
-import { backendWebGL2 } from "@zephyr3d/backend-webgl";
+  Scene
+} from '@zephyr3d/scene';
+import { backendWebGL2 } from '@zephyr3d/backend-webgl';
 
 // ── Scene setup ──
 const app = new Application({
-  canvas: window.document.body.querySelector<HTMLCanvasElement>("#canvas"),
-  backend: backendWebGL2,
+  canvas: window.document.body.querySelector<HTMLCanvasElement>('#canvas'),
+  backend: backendWebGL2
 });
 
 await app.ready();
@@ -34,7 +34,7 @@ camera.TAA = true;
 scene.mainCamera = camera;
 
 camera.controller = new OrbitCameraController({
-  center: new Vector3(0, 1, 0),
+  center: new Vector3(0, 1, 0)
 });
 
 const dirLight = new DirectionalLight(scene);
@@ -43,7 +43,7 @@ dirLight.lookAt(new Vector3(2, 4, 3), Vector3.zero(), Vector3.axisPY());
 getInput().use(camera.handleEvent, camera);
 getEngine().setRenderable(scene, 0);
 
-app.on("tick", tick);
+app.on('tick', tick);
 
 // ── Demos ──
 
@@ -51,7 +51,7 @@ let chainDemo: BoneChainDemo | null = null;
 let clothDemo: ClothGridDemo | null = null;
 let barrelDemo: BarrelClothDemo | null = null;
 let closedDemo: ClosedChainDemo | null = null;
-let activeDemo: "chain" | "cloth" | "barrel" | "closed" = "cloth";
+let activeDemo: 'chain' | 'cloth' | 'barrel' | 'closed' = 'cloth';
 let windEnabled = false;
 let broadPhaseEnabled = true;
 
@@ -99,16 +99,16 @@ function activateChain() {
   clearDemos();
   chainDemo = createBoneChainDemo(scene);
   chainDemo.springSystem.controller.reset();
-  activeDemo = "chain";
+  activeDemo = 'chain';
 
   const fixedSet = new Set<number>();
   fixedSet.add(0);
 
-  btnChain.classList.add("active");
-  btnCloth.classList.remove("active");
-  btnBarrel.classList.remove("active");
-  btnClosed.classList.remove("active");
-  releaseControls.style.display = "none";
+  btnChain.classList.add('active');
+  btnCloth.classList.remove('active');
+  btnBarrel.classList.remove('active');
+  btnClosed.classList.remove('active');
+  releaseControls.style.display = 'none';
   applyRuntimeFlags();
   updateStatus();
 }
@@ -116,18 +116,18 @@ function activateChain() {
 function activateCloth() {
   clearDemos();
   clothDemo = createClothGridDemo(scene);
-  activeDemo = "cloth";
+  activeDemo = 'cloth';
 
   const fixedSet = new Set<number>();
   for (let col = 0; col < 6; col++) {
     fixedSet.add(col * 6);
   }
 
-  btnChain.classList.remove("active");
-  btnCloth.classList.add("active");
-  btnBarrel.classList.remove("active");
-  btnClosed.classList.remove("active");
-  releaseControls.style.display = "inline";
+  btnChain.classList.remove('active');
+  btnCloth.classList.add('active');
+  btnBarrel.classList.remove('active');
+  btnClosed.classList.remove('active');
+  releaseControls.style.display = 'inline';
   nextReleaseCol = 0;
   applyRuntimeFlags();
   updateStatus();
@@ -136,18 +136,18 @@ function activateCloth() {
 function activateBarrel() {
   clearDemos();
   barrelDemo = createBarrelClothDemo(scene);
-  activeDemo = "barrel";
+  activeDemo = 'barrel';
 
   const fixedSet = new Set<number>();
   for (let col = 0; col < barrelDemo.cols; col++) {
     fixedSet.add(col * barrelDemo.rows);
   }
 
-  btnChain.classList.remove("active");
-  btnCloth.classList.remove("active");
-  btnBarrel.classList.add("active");
-  btnClosed.classList.remove("active");
-  releaseControls.style.display = "inline";
+  btnChain.classList.remove('active');
+  btnCloth.classList.remove('active');
+  btnBarrel.classList.add('active');
+  btnClosed.classList.remove('active');
+  releaseControls.style.display = 'inline';
   nextReleaseCol = 0;
   applyRuntimeFlags();
   updateStatus();
@@ -156,54 +156,50 @@ function activateBarrel() {
 function activateClosed() {
   clearDemos();
   closedDemo = createClosedChainDemo(scene);
-  activeDemo = "closed";
+  activeDemo = 'closed';
 
-  btnChain.classList.remove("active");
-  btnCloth.classList.remove("active");
-  btnBarrel.classList.remove("active");
-  btnClosed.classList.add("active");
-  releaseControls.style.display = "none";
+  btnChain.classList.remove('active');
+  btnCloth.classList.remove('active');
+  btnBarrel.classList.remove('active');
+  btnClosed.classList.add('active');
+  releaseControls.style.display = 'none';
   applyRuntimeFlags();
   updateStatus();
 }
 
 // ── UI ──
 
-const btnChain = document.getElementById("btn-chain")!;
-const btnCloth = document.getElementById("btn-cloth")!;
-const btnBarrel = document.getElementById("btn-barrel")!;
-const btnClosed = document.getElementById("btn-closed")!;
-const btnWind = document.getElementById("btn-wind")!;
-const btnBroadPhase = document.getElementById("btn-broadphase")!;
-const btnReset = document.getElementById("btn-reset")!;
-const releaseControls = document.getElementById(
-  "release-controls",
-)! as HTMLElement;
-const btnReleaseOne = document.getElementById("btn-release-one")!;
-const btnReleaseAll = document.getElementById("btn-release-all")!;
-const btnFixAll = document.getElementById("btn-fix-all")!;
-const statusDiv = document.getElementById("status")!;
+const btnChain = document.getElementById('btn-chain')!;
+const btnCloth = document.getElementById('btn-cloth')!;
+const btnBarrel = document.getElementById('btn-barrel')!;
+const btnClosed = document.getElementById('btn-closed')!;
+const btnWind = document.getElementById('btn-wind')!;
+const btnBroadPhase = document.getElementById('btn-broadphase')!;
+const btnReset = document.getElementById('btn-reset')!;
+const releaseControls = document.getElementById('release-controls')! as HTMLElement;
+const btnReleaseOne = document.getElementById('btn-release-one')!;
+const btnReleaseAll = document.getElementById('btn-release-all')!;
+const btnFixAll = document.getElementById('btn-fix-all')!;
+const statusDiv = document.getElementById('status')!;
 
 let nextReleaseCol = 0;
 
-btnChain.addEventListener("click", activateChain);
-btnCloth.addEventListener("click", activateCloth);
-btnBarrel.addEventListener("click", activateBarrel);
-btnClosed.addEventListener("click", activateClosed);
-btnWind.addEventListener("click", () => {
+btnChain.addEventListener('click', activateChain);
+btnCloth.addEventListener('click', activateCloth);
+btnBarrel.addEventListener('click', activateBarrel);
+btnClosed.addEventListener('click', activateClosed);
+btnWind.addEventListener('click', () => {
   windEnabled = !windEnabled;
-  btnWind.classList.toggle("active", windEnabled);
+  btnWind.classList.toggle('active', windEnabled);
 });
-btnBroadPhase.addEventListener("click", () => {
+btnBroadPhase.addEventListener('click', () => {
   broadPhaseEnabled = !broadPhaseEnabled;
-  btnBroadPhase.classList.toggle("active", broadPhaseEnabled);
-  btnBroadPhase.textContent = broadPhaseEnabled
-    ? "Broad-Phase On"
-    : "Broad-Phase Off";
+  btnBroadPhase.classList.toggle('active', broadPhaseEnabled);
+  btnBroadPhase.textContent = broadPhaseEnabled ? 'Broad-Phase On' : 'Broad-Phase Off';
   applyRuntimeFlags();
   updateStatus();
 });
-btnReset.addEventListener("click", () => {
+btnReset.addEventListener('click', () => {
   if (chainDemo) {
     chainDemo.springSystem.controller.reset();
   }
@@ -232,7 +228,7 @@ btnReset.addEventListener("click", () => {
 });
 
 // Release/Fix controls (cloth grid and barrel only)
-btnReleaseOne.addEventListener("click", () => {
+btnReleaseOne.addEventListener('click', () => {
   const demo = clothDemo ?? barrelDemo;
   if (!demo) {
     return;
@@ -245,7 +241,7 @@ btnReleaseOne.addEventListener("click", () => {
   }
 });
 
-btnReleaseAll.addEventListener("click", () => {
+btnReleaseAll.addEventListener('click', () => {
   const demo = clothDemo ?? barrelDemo;
   if (!demo) {
     return;
@@ -257,7 +253,7 @@ btnReleaseAll.addEventListener("click", () => {
   updateStatus();
 });
 
-btnFixAll.addEventListener("click", () => {
+btnFixAll.addEventListener('click', () => {
   const demo = clothDemo ?? barrelDemo;
   if (!demo) {
     return;
@@ -270,26 +266,21 @@ btnFixAll.addEventListener("click", () => {
 });
 
 function updateStatus() {
-  const demo =
-    activeDemo === "cloth"
-      ? clothDemo
-      : activeDemo === "barrel"
-        ? barrelDemo
-        : null;
+  const demo = activeDemo === 'cloth' ? clothDemo : activeDemo === 'barrel' ? barrelDemo : null;
   if (demo) {
     const states = demo.fixedIndices.map((idx, col) => {
       const fixed = demo!.springSystem.controller.isPointFixed(idx);
-      return `Col${col}: ${fixed ? "Fixed" : "Free"}`;
+      return `Col${col}: ${fixed ? 'Fixed' : 'Free'}`;
     });
-    statusDiv.textContent = `Top row: ${states.join("  |  ")} | Colliders: ${demo.collidersR.length} | Broad-Phase: ${broadPhaseEnabled ? "On" : "Off"}`;
-  } else if (activeDemo === "closed" && closedDemo) {
+    statusDiv.textContent = `Top row: ${states.join('  |  ')} | Colliders: ${demo.collidersR.length} | Broad-Phase: ${broadPhaseEnabled ? 'On' : 'Off'}`;
+  } else if (activeDemo === 'closed' && closedDemo) {
     const states = closedDemo.fixedIndices.map((idx, pin) => {
       const fixed = closedDemo!.springSystem.controller.isPointFixed(idx);
-      return `${pin === 0 ? "Head" : "Tail"}: ${fixed ? "Fixed" : "Free"}`;
+      return `${pin === 0 ? 'Head' : 'Tail'}: ${fixed ? 'Fixed' : 'Free'}`;
     });
-    statusDiv.textContent = `Closed chain pins: ${states.join("  |  ")} | Colliders: ${closedDemo.collidersR.length} | Broad-Phase: ${broadPhaseEnabled ? "On" : "Off"}`;
+    statusDiv.textContent = `Closed chain pins: ${states.join('  |  ')} | Colliders: ${closedDemo.collidersR.length} | Broad-Phase: ${broadPhaseEnabled ? 'On' : 'Off'}`;
   } else {
-    statusDiv.textContent = `Broad-Phase: ${broadPhaseEnabled ? "On" : "Off"}`;
+    statusDiv.textContent = `Broad-Phase: ${broadPhaseEnabled ? 'On' : 'Off'}`;
   }
 }
 
@@ -308,32 +299,32 @@ const grabIntersect = new Vector3();
 let grabbing = false;
 
 function getActiveGrabber(): SceneNode | null {
-  if (activeDemo === "chain" && chainDemo) {
+  if (activeDemo === 'chain' && chainDemo) {
     return chainDemo.grabberObj;
   }
-  if (activeDemo === "cloth" && clothDemo) {
+  if (activeDemo === 'cloth' && clothDemo) {
     return clothDemo.grabberObj;
   }
-  if (activeDemo === "barrel" && barrelDemo) {
+  if (activeDemo === 'barrel' && barrelDemo) {
     return barrelDemo.grabberObj;
   }
-  if (activeDemo === "closed" && closedDemo) {
+  if (activeDemo === 'closed' && closedDemo) {
     return closedDemo.grabberObj;
   }
   return null;
 }
 
 function getActiveController() {
-  if (activeDemo === "chain" && chainDemo) {
+  if (activeDemo === 'chain' && chainDemo) {
     return chainDemo.springSystem.controller;
   }
-  if (activeDemo === "cloth" && clothDemo) {
+  if (activeDemo === 'cloth' && clothDemo) {
     return clothDemo.springSystem.controller;
   }
-  if (activeDemo === "barrel" && barrelDemo) {
+  if (activeDemo === 'barrel' && barrelDemo) {
     return barrelDemo.springSystem.controller;
   }
-  if (activeDemo === "closed" && closedDemo) {
+  if (activeDemo === 'closed' && closedDemo) {
     return closedDemo.springSystem.controller;
   }
   return null;
@@ -345,7 +336,7 @@ function updateGrabPlane() {
   const camDir = new Vector3(
     -cameraWorldMatrix[8],
     -cameraWorldMatrix[9],
-    -cameraWorldMatrix[10],
+    -cameraWorldMatrix[10]
   ).inplaceNormalize();
   grabPlane.a = -camDir.x;
   grabPlane.b = -camDir.y;
@@ -367,24 +358,20 @@ function moveGrabberToMouse() {
   if (d === null) {
     return;
   }
-  Vector3.add(
-    raycaster.ray.origin,
-    Vector3.scale(raycaster.ray.direction, d),
-    grabIntersect,
-  );
+  Vector3.add(raycaster.ray.origin, Vector3.scale(raycaster.ray.direction, d), grabIntersect);
   const grabber = getActiveGrabber();
   if (grabber) {
     grabber.position.set(grabIntersect);
     // Show grabber radius visualization
     const vis = grabber.children[0];
     if (vis) {
-      vis.showState = "visible";
+      vis.showState = 'visible';
     }
   }
 }
 
 getInput().useFirst((evt) => {
-  if (evt.type === "pointerdown") {
+  if (evt.type === 'pointerdown') {
     const e = evt as unknown as IControllerPointerDownEvent;
     if (e.button !== 2) {
       return false;
@@ -398,7 +385,7 @@ getInput().useFirst((evt) => {
       ctrl.setGrabberEnabledAt(0, true);
     }
     return true;
-  } else if (evt.type === "pointermove") {
+  } else if (evt.type === 'pointermove') {
     const e = evt as unknown as IControllerPointerDownEvent;
     if (!grabbing) {
       return false;
@@ -410,7 +397,7 @@ getInput().useFirst((evt) => {
       ctrl.setGrabberEnabledAt(0, true);
     }
     return true;
-  } else if (evt.type === "pointerup") {
+  } else if (evt.type === 'pointerup') {
     if (!grabbing) {
       return false;
     }
@@ -423,7 +410,7 @@ getInput().useFirst((evt) => {
     if (grabber) {
       const vis = grabber.children[0];
       if (vis) {
-        vis.showState = "hidden";
+        vis.showState = 'hidden';
       }
     }
     return true;
@@ -442,22 +429,22 @@ function tick(dt: number) {
     ? new Vector3(Math.sin(elapsed * 2) * 80, 0, Math.cos(elapsed * 1.3) * 60)
     : Vector3.zero();
 
-  if (activeDemo === "chain" && chainDemo) {
+  if (activeDemo === 'chain' && chainDemo) {
     chainDemo.springSystem.controller.setWindForce(wind);
     chainDemo.update(elapsed, dt);
   }
 
-  if (activeDemo === "cloth" && clothDemo) {
+  if (activeDemo === 'cloth' && clothDemo) {
     clothDemo.springSystem.controller.setWindForce(wind);
     clothDemo.update(elapsed, dt);
   }
 
-  if (activeDemo === "barrel" && barrelDemo) {
+  if (activeDemo === 'barrel' && barrelDemo) {
     barrelDemo.springSystem.controller.setWindForce(wind);
     barrelDemo.update(elapsed, dt);
   }
 
-  if (activeDemo === "closed" && closedDemo) {
+  if (activeDemo === 'closed' && closedDemo) {
     closedDemo.springSystem.controller.setWindForce(wind);
     closedDemo.update(elapsed, dt);
   }

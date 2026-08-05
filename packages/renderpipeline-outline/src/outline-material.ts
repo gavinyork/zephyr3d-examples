@@ -1,4 +1,4 @@
-import { Vector4 } from '@zephyr3d/base';
+import { DEPTH_COMPARE_DEFAULT, Vector4 } from '@zephyr3d/base';
 import type { BindGroup, PBFunctionScope, RenderStateSet } from '@zephyr3d/device';
 import { ShaderHelper, UnlitMaterial } from '@zephyr3d/scene';
 import type { DrawContext } from '@zephyr3d/scene';
@@ -34,7 +34,7 @@ export class OutlineMaterial extends UnlitMaterial {
 
   protected updateRenderStates(pass: number, stateSet: RenderStateSet, ctx: DrawContext): void {
     super.updateRenderStates(pass, stateSet, ctx);
-    stateSet.useDepthState().enableTest(true).enableWrite(false).setCompareFunc('le');
+    stateSet.useDepthState().enableTest(true).enableWrite(false).setCompareFunc(DEPTH_COMPARE_DEFAULT);
   }
 
   vertexShader(scope: PBFunctionScope): void {

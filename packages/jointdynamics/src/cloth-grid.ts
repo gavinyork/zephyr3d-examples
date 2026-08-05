@@ -1,17 +1,10 @@
 // Cloth grid demo — 6x6 grid with all 5 constraint types + capsule collider
 
-import { InterpolatorScalar } from "@zephyr3d/base";
-import type { BoneNode, ColliderR, GrabberR, Scene } from "@zephyr3d/scene";
-import { JointDynamicsSystem, createTransformAccess } from "@zephyr3d/scene";
-import {
-  BoxShape,
-  CapsuleShape,
-  LambertMaterial,
-  Mesh,
-  SceneNode,
-  SphereShape,
-} from "@zephyr3d/scene";
-import { Vector3 } from "@zephyr3d/base";
+import { InterpolatorScalar } from '@zephyr3d/base';
+import type { BoneNode, ColliderR, GrabberR, Scene } from '@zephyr3d/scene';
+import { JointDynamicsSystem, createTransformAccess } from '@zephyr3d/scene';
+import { BoxShape, CapsuleShape, LambertMaterial, Mesh, SceneNode, SphereShape } from '@zephyr3d/scene';
+import { Vector3 } from '@zephyr3d/base';
 
 export interface ClothGridDemo {
   group: SceneNode;
@@ -68,7 +61,7 @@ export function createClothGridDemo(scene: Scene): ClothGridDemo {
     { radius: 0.12, height: 0.4, x: 0, y: 0.8, z: 0.15 },
     { radius: 0.11, height: 0.35, x: -0.35, y: 1.05, z: -0.1 },
     { radius: 0.1, height: 0.3, x: 0.35, y: 0.65, z: 0.2 },
-    { radius: 0.09, height: 0.25, x: 0, y: 1.2, z: -0.25 },
+    { radius: 0.09, height: 0.25, x: 0, y: 1.2, z: -0.25 }
   ];
   for (const def of colliderDefs) {
     const colliderNode = new SceneNode(scene);
@@ -77,7 +70,7 @@ export function createClothGridDemo(scene: Scene): ClothGridDemo {
     const capsuleVis = new Mesh(
       scene,
       new CapsuleShape({ radius: def.radius, height: def.height }),
-      new LambertMaterial(),
+      new LambertMaterial()
     );
     capsuleVis.parent = colliderNode;
     colliderNodes.push(colliderNode);
@@ -86,12 +79,8 @@ export function createClothGridDemo(scene: Scene): ClothGridDemo {
   // Grabber
   const grabberObj = new SceneNode(scene);
   grabberObj.position.setXYZ(0, 1.5, 0);
-  const grabberVis = new Mesh(
-    scene,
-    new SphereShape({ radius: 0.35 }),
-    new LambertMaterial(),
-  );
-  grabberVis.showState = "hidden";
+  const grabberVis = new Mesh(scene, new SphereShape({ radius: 0.35 }), new LambertMaterial());
+  grabberVis.showState = 'hidden';
   grabberVis.parent = grabberObj;
 
   const grabbersR: GrabberR[] = [{ radius: 0.35, force: 0.5 }];
@@ -107,7 +96,7 @@ export function createClothGridDemo(scene: Scene): ClothGridDemo {
       children: [],
       isFixed: row === 0,
       depth: row,
-      useForSurfaceCollision: true,
+      useForSurfaceCollision: true
     };
   });
 
@@ -128,7 +117,7 @@ export function createClothGridDemo(scene: Scene): ClothGridDemo {
     height: def.height,
     friction: 0.5,
     isInverseCollider: false,
-    forceType: 0,
+    forceType: 0
   }));
 
   const colliderTAs = colliderNodes.map((node) => createTransformAccess(node));
@@ -140,8 +129,8 @@ export function createClothGridDemo(scene: Scene): ClothGridDemo {
         systemRoot: group,
         chains: boneGrid.map((chain) => ({
           start: chain[0],
-          end: chain[chain.length - 1],
-        })),
+          end: chain[chain.length - 1]
+        }))
       },
       controllerConfig: {
         enableSurfaceCollision: true,
@@ -152,7 +141,7 @@ export function createClothGridDemo(scene: Scene): ClothGridDemo {
           structuralShrinkVertical: InterpolatorScalar.constant(0.5),
           structuralStretchVertical: InterpolatorScalar.constant(0.5),
           shearShrink: InterpolatorScalar.constant(0.8),
-          shearStretch: InterpolatorScalar.constant(0.8),
+          shearStretch: InterpolatorScalar.constant(0.8)
         },
         constraintOptions: {
           structuralVertical: true,
@@ -163,13 +152,13 @@ export function createClothGridDemo(scene: Scene): ClothGridDemo {
           collideStructuralVertical: true,
           collideStructuralHorizontal: true,
           collideShear: true,
-          enableSurfaceCollision: true,
-        },
-      },
+          enableSurfaceCollision: true
+        }
+      }
     },
     collidersR.map((r, index) => ({ r, transform: colliderTAs[index] })),
     [{ r: grabbersR[0], transform: grabberTA, enabled: false }],
-    [{ up: new Vector3(0, 1, 0), position: new Vector3(0, 0, 0) }], // floor at y=0
+    [{ up: new Vector3(0, 1, 0), position: new Vector3(0, 0, 0) }] // floor at y=0
   );
 
   //const constraints = buildConstraints(rootPoints, config.constraintOptions);
@@ -202,6 +191,6 @@ export function createClothGridDemo(scene: Scene): ClothGridDemo {
     fixedIndices,
     cols: COLS,
     rows: ROWS,
-    update,
+    update
   };
 }

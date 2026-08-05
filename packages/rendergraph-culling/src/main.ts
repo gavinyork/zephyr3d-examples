@@ -1,4 +1,4 @@
-import { Matrix4x4, Quaternion, Vector3, Vector4 } from '@zephyr3d/base';
+import { DEPTH_CLEAR_VALUE, Matrix4x4, Quaternion, Vector3, Vector4 } from '@zephyr3d/base';
 import { backendWebGL1, backendWebGL2 } from '@zephyr3d/backend-webgl';
 import { backendWebGPU } from '@zephyr3d/backend-webgpu';
 import type { DeviceBackend, FrameBuffer, Texture2D } from '@zephyr3d/device';
@@ -131,7 +131,7 @@ myApp.ready().then(async () => {
       builder.setExecute((rgCtx) => {
         culledPassExecuted = true;
         device.setFramebuffer(rgCtx.getFramebuffer(framebuffer));
-        device.clearFrameBuffer(new Vector4(1, 0, 1, 1), 1, 0);
+        device.clearFrameBuffer(new Vector4(1, 0, 1, 1), DEPTH_CLEAR_VALUE, 0);
       });
       return colorTexture;
     });
@@ -168,7 +168,7 @@ myApp.ready().then(async () => {
 
         // Resolve the logical framebuffer handle to the real framebuffer for this pass.
         device.setFramebuffer(rgCtx.getFramebuffer(framebuffer));
-        device.clearFrameBuffer(new Vector4(0.5, 0, 0, 1), 1, 0);
+        device.clearFrameBuffer(new Vector4(0.5, 0, 0, 1), DEPTH_CLEAR_VALUE, 0);
         bindGroup.setValue('worldMatrix', worldMatrix);
         bindGroup.setValue('projMatrix', projMatrix);
         device.setBindGroup(0, bindGroup);
@@ -190,7 +190,7 @@ myApp.ready().then(async () => {
       builder.setExecute((rgCtx) => {
         const projMatrix = Matrix4x4.perspective(1.5, backBufferWidth / backBufferHeight, 1, 50);
         device.setFramebuffer(null);
-        device.clearFrameBuffer(new Vector4(0, 0, 0.5, 1), 1, 0);
+        device.clearFrameBuffer(new Vector4(0, 0, 0.5, 1), DEPTH_CLEAR_VALUE, 0);
         bindGroupTextured.setValue('worldMatrix', worldMatrix);
         bindGroupTextured.setValue('projMatrix', projMatrix);
         bindGroupTextured.setTexture('tex', rgCtx.getTexture(renderTargetColorTexture));

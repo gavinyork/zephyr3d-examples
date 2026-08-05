@@ -96,15 +96,22 @@
     </style>
   </head>
   <body>
-    <div id="hint">
-      <b>WASD</b> / Arrow keys to drive &nbsp;·&nbsp; <b>Space</b> handbrake
-    </div>
+    <div id="hint"><b>WASD</b> / Arrow keys to drive &nbsp;·&nbsp; <b>Space</b> handbrake</div>
     <div id="hud">
       <div id="speed">0</div>
       <div id="speed-unit">km/h</div>
     </div>
     <div id="loading">Loading…</div>
     <canvas id="canvas"></canvas>
+    <script>
+      // Select the engine depth convention before any engine module loads.
+      const params = new URLSearchParams(location.search);
+      if (params.has('standardZ')) {
+        globalThis.__ZEPHYR3D_REVERSE_Z__ = false;
+      } else if (params.has('reverseZ')) {
+        globalThis.__ZEPHYR3D_REVERSE_Z__ = true;
+      }
+    </script>
     <script type="module" src="js/main.js"></script>
   </body>
 </html>

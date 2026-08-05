@@ -22,7 +22,12 @@
         overflow: hidden;
         background: #161819;
         color: var(--text);
-        font: 13px/1.4 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font:
+          13px/1.4 system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
       }
 
       canvas {
@@ -144,6 +149,15 @@
       </div>
       <div id="event-log"></div>
     </div>
+    <script>
+      // Select the engine depth convention before any engine module loads.
+      const params = new URLSearchParams(location.search);
+      if (params.has('standardZ')) {
+        globalThis.__ZEPHYR3D_REVERSE_Z__ = false;
+      } else if (params.has('reverseZ')) {
+        globalThis.__ZEPHYR3D_REVERSE_Z__ = true;
+      }
+    </script>
     <script type="module" src="js/main.js"></script>
   </body>
 </html>

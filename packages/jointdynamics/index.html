@@ -65,6 +65,15 @@
       SPCR Joint Dynamics — TypeScript Port Demo | Left-click drag to grab bones
     </div>
     <canvas id="canvas" style="display: block; position: absolute; width: 100%; height: 100%"></canvas>
+    <script>
+      // Select the engine depth convention before any engine module loads.
+      const params = new URLSearchParams(location.search);
+      if (params.has('standardZ')) {
+        globalThis.__ZEPHYR3D_REVERSE_Z__ = false;
+      } else if (params.has('reverseZ')) {
+        globalThis.__ZEPHYR3D_REVERSE_Z__ = true;
+      }
+    </script>
     <script type="module" src="js/main.js"></script>
   </body>
 </html>

@@ -1,14 +1,10 @@
 // Closed chain demo - open bone chain with coincident fixed endpoints.
 
-import { InterpolatorScalar, Quaternion, Vector4 } from "@zephyr3d/base";
-import type { ColliderR, GrabberR, Scene } from "@zephyr3d/scene";
-import {
-  CapsuleShape,
-  createTransformAccess,
-  JointDynamicsSystem,
-} from "@zephyr3d/scene";
-import { LambertMaterial, Mesh, SceneNode, SphereShape } from "@zephyr3d/scene";
-import { Vector3 } from "@zephyr3d/base";
+import { InterpolatorScalar, Quaternion, Vector4 } from '@zephyr3d/base';
+import type { ColliderR, GrabberR, Scene } from '@zephyr3d/scene';
+import { CapsuleShape, createTransformAccess, JointDynamicsSystem } from '@zephyr3d/scene';
+import { LambertMaterial, Mesh, SceneNode, SphereShape } from '@zephyr3d/scene';
+import { Vector3 } from '@zephyr3d/base';
 
 export interface ClosedChainDemo {
   root: SceneNode;
@@ -21,12 +17,7 @@ export interface ClosedChainDemo {
   update: (time: number, dt: number) => void;
 }
 
-function ellipsePoint(
-  index: number,
-  segmentCount: number,
-  radiusX: number,
-  radiusY: number,
-): Vector3 {
+function ellipsePoint(index: number, segmentCount: number, radiusX: number, radiusY: number): Vector3 {
   const t = index / segmentCount;
   const angle = Math.PI / 2 + t * Math.PI * 2;
   return new Vector3(Math.cos(angle) * radiusX, Math.sin(angle) * radiusY, 0);
@@ -44,7 +35,7 @@ export function createClosedChainDemo(scene: Scene): ClosedChainDemo {
   sysroot.position.setXYZ(0, 1.35, 0);
 
   const points = Array.from({ length: SEGMENTS + 1 }, (_, i) =>
-    ellipsePoint(i, SEGMENTS, RADIUS_X, RADIUS_Y),
+    ellipsePoint(i, SEGMENTS, RADIUS_X, RADIUS_Y)
   );
 
   const root = new SceneNode(scene);
@@ -69,11 +60,7 @@ export function createClosedChainDemo(scene: Scene): ClosedChainDemo {
 
   const allPoints = [root, ...bones];
   for (let i = 0; i < allPoints.length; i++) {
-    const mesh = new Mesh(
-      scene,
-      beadGeo,
-      i === 0 || i === allPoints.length - 1 ? fixedMat : beadMat,
-    );
+    const mesh = new Mesh(scene, beadGeo, i === 0 || i === allPoints.length - 1 ? fixedMat : beadMat);
     mesh.parent = allPoints[i];
   }
 
@@ -84,19 +71,15 @@ export function createClosedChainDemo(scene: Scene): ClosedChainDemo {
   const colliderVis = new Mesh(
     scene,
     new CapsuleShape({ radius: NECK_RADIUS, height: NECK_HEIGHT }),
-    colliderMat,
+    colliderMat
   );
   colliderVis.parent = colliderObj;
 
   const grabberObj = new SceneNode(scene);
   grabberObj.position.setXYZ(0, 0.95, 0.35);
-  const grabberVis = new Mesh(
-    scene,
-    new SphereShape({ radius: 0.28 }),
-    new LambertMaterial(),
-  );
+  const grabberVis = new Mesh(scene, new SphereShape({ radius: 0.28 }), new LambertMaterial());
   grabberVis.parent = grabberObj;
-  grabberVis.showState = "hidden";
+  grabberVis.showState = 'hidden';
 
   const collidersR: ColliderR[] = [
     {
@@ -105,8 +88,8 @@ export function createClosedChainDemo(scene: Scene): ClosedChainDemo {
       height: NECK_HEIGHT,
       friction: 0.25,
       isInverseCollider: false,
-      forceType: 0,
-    },
+      forceType: 0
+    }
   ];
   const grabbersR: GrabberR[] = [{ radius: 0.28, force: 0.45 }];
 
@@ -114,7 +97,7 @@ export function createClosedChainDemo(scene: Scene): ClosedChainDemo {
     {
       chainConfig: {
         systemRoot: sysroot,
-        chains: [{ start: root, end: bones[bones.length - 1] }],
+        chains: [{ start: root, end: bones[bones.length - 1] }]
       },
       controllerConfig: {
         gravity: new Vector3(0, -9.8, 0),
@@ -128,24 +111,24 @@ export function createClosedChainDemo(scene: Scene): ClosedChainDemo {
           structuralShrinkVertical: InterpolatorScalar.constant(0.95),
           structuralStretchVertical: InterpolatorScalar.constant(0.95),
           bendingShrinkVertical: InterpolatorScalar.constant(0.003),
-          bendingStretchVertical: InterpolatorScalar.constant(0.003),
+          bendingStretchVertical: InterpolatorScalar.constant(0.003)
         },
         constraintOptions: {
           structuralVertical: true,
           bendingVertical: true,
-          collideStructuralVertical: true,
-        },
-      },
+          collideStructuralVertical: true
+        }
+      }
     },
     [{ r: collidersR[0], transform: createTransformAccess(colliderObj) }],
     [
       {
         r: grabbersR[0],
         transform: createTransformAccess(grabberObj),
-        enabled: false,
-      },
+        enabled: false
+      }
     ],
-    [{ up: new Vector3(0, 1, 0), position: new Vector3(0, 0, 0) }],
+    [{ up: new Vector3(0, 1, 0), position: new Vector3(0, 0, 0) }]
   );
 
   const fixedIndices = [0, springSystem.controller.pointCount - 1];
@@ -155,10 +138,7 @@ export function createClosedChainDemo(scene: Scene): ClosedChainDemo {
 
   const update = (time: number, dt: number) => {
     sysroot.position.x = Math.sin(time * 1.1) * 0.18;
-    sysroot.rotation = Quaternion.fromAxisAngle(
-      Vector3.axisPY(),
-      Math.sin(time * 0.8) * 0.35,
-    );
+    sysroot.rotation = Quaternion.fromAxisAngle(Vector3.axisPY(), Math.sin(time * 0.8) * 0.35);
     colliderObj.position.x = sysroot.position.x;
 
     tailTransform.setWorldPosition(root.getWorldPosition());
@@ -173,6 +153,6 @@ export function createClosedChainDemo(scene: Scene): ClosedChainDemo {
     springSystem,
     collidersR,
     fixedIndices,
-    update,
+    update
   };
 }
