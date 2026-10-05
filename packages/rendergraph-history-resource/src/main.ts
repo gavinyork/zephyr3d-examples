@@ -1,5 +1,5 @@
 import { DEPTH_CLEAR_VALUE, Matrix4x4, Quaternion, Vector3, Vector4 } from '@zephyr3d/base';
-import { backendWebGL1, backendWebGL2 } from '@zephyr3d/backend-webgl';
+import { backendWebGL2 } from '@zephyr3d/backend-webgl';
 import { backendWebGPU } from '@zephyr3d/backend-webgpu';
 import type { DeviceBackend, FrameBuffer, Texture2D } from '@zephyr3d/device';
 import { DrawText } from '@zephyr3d/device';
@@ -15,13 +15,13 @@ import {
 } from '@zephyr3d/scene';
 
 const backendsMap: Record<string, DeviceBackend> = {
-  webgl: backendWebGL1,
+  webgl: backendWebGL2,
   webgl2: backendWebGL2,
   webgpu: backendWebGPU
 };
 
 const canvas = document.querySelector<HTMLCanvasElement>('#canvas');
-const type = new URL(location.href).searchParams.get('dev') || 'webgl';
+const type = new URL(location.href).searchParams.get('dev') || 'webgl2';
 const backend = backendsMap[type];
 if (!backend) {
   throw new Error(`Invalid backend: ${type}`);

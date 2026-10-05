@@ -1,5 +1,5 @@
 import { Vector3, Vector4 } from '@zephyr3d/base';
-import { backendWebGL2, backendWebGL1 } from '@zephyr3d/backend-webgl';
+import { backendWebGL2 } from '@zephyr3d/backend-webgl';
 import { backendWebGPU } from '@zephyr3d/backend-webgpu';
 import {
   Application,
@@ -100,11 +100,5 @@ async function getBackend(): Promise<DeviceBackend> {
     }
     console.warn('No WebGPU support, fall back to WebGL2');
   }
-  if (type === 'webgl2' || type === 'webgpu') {
-    if (await backendWebGL2.supported()) {
-      return backendWebGL2;
-    }
-    console.warn('No WebGL2 support, fall back to WebGL1');
-  }
-  return backendWebGL1;
+  return backendWebGL2;
 }
